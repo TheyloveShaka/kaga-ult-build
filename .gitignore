@@ -1,0 +1,15 @@
+# Real rate card. Contains cost basis, margin, and walk-away floor.
+# Never commit this. Use rates.example.yml as the shared template.
+plugins/kaga-ult-build/config/rates.yml
+
+# Internal business documents, if any are ever generated inside this repo
+docs/BUSINESS-CASE.md
+docs/QUOTE.md
+
+node_modules/
+.DS_Store
+Thumbs.db
+*.log
+.env
+.env.*
+!.env.example

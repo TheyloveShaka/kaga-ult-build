@@ -1,0 +1,42 @@
+{
+  "name": "kaga-ult-build",
+  "version": "1.0.0",
+  "description": "Kaga's master build system for premium client websites. Orchestrates a nine-agent crew (art direction, UX, frontend, motion, backend, content/SEO, security, UAT, integration) through Plan then Act then Audit. Enforces a mandatory 10-site reference hunt, researched colour palettes and typography, a resolved image plan, zero framework defaults, baked-in security review, and a costed client quote. Use for any new site, redesign, landing page, or major visual feature that must look like a $10k+ agency build.",
+  "author": {
+    "name": "Kaga",
+    "url": "https://github.com/TheyloveShaka"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/TheyloveShaka/kaga-ult-build",
+  "repository": "https://github.com/TheyloveShaka/kaga-ult-build.git",
+  "keywords": [
+    "web-design",
+    "orchestration",
+    "agents",
+    "art-direction",
+    "design-system",
+    "seo",
+    "security-audit",
+    "client-work",
+    "nextjs",
+    "animation"
+  ],
+  "skills": "./skills/",
+  "commands": [
+    "./commands/kaga-build.md",
+    "./commands/kaga-refs.md",
+    "./commands/kaga-audit.md",
+    "./commands/kaga-quote.md"
+  ],
+  "agents": [
+    "./agents/kaga-art-director.md",
+    "./agents/kaga-ux-architect.md",
+    "./agents/kaga-frontend-engineer.md",
+    "./agents/kaga-motion-engineer.md",
+    "./agents/kaga-backend-engineer.md",
+    "./agents/kaga-content-seo.md",
+    "./agents/kaga-security-auditor.md",
+    "./agents/kaga-uat-agent.md",
+    "./agents/kaga-integrator.md"
+  ]
+}

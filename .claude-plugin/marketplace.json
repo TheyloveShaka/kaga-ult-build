@@ -1,0 +1,22 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "kaga-ult-build",
+  "owner": {
+    "name": "Kaga",
+    "url": "https://github.com/TheyloveShaka"
+  },
+  "metadata": {
+    "description": "Kaga's master build system for premium client websites. A nine-agent crew run through Plan, Act, Audit, with mandatory reference research, researched art direction, a resolved image plan, baked-in security review, and a costed client quote.",
+    "version": "1.0.0",
+    "homepage": "https://github.com/TheyloveShaka/kaga-ult-build",
+    "repository": "https://github.com/TheyloveShaka/kaga-ult-build"
+  },
+  "plugins": [
+    {
+      "name": "kaga-ult-build",
+      "source": "./plugins/kaga-ult-build",
+      "version": "1.0.0",
+      "description": "Master build orchestrator for premium client websites. Runs a nine-agent crew (art direction, UX, frontend, motion, backend, content/SEO, security, UAT, integration) through Plan then Act then Audit. Enforces a 10-site reference hunt before any design work, researched colour palettes and typography with stated contrast ratios, a resolved image plan, zero framework defaults, a three-pass audit, and a costed client quote. Use for any new site, redesign, landing page, or major visual feature."
+    }
+  ]
+}

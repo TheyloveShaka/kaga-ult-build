@@ -1,0 +1,114 @@
+# Kaga Ult-Build :: rate card TEMPLATE
+#
+# Copy this file to `rates.yml` in the same directory and fill in your own
+# numbers. `rates.yml` is gitignored, so your cost basis and margin floor
+# never leave your machine.
+#
+#   cp rates.example.yml rates.yml
+#
+# The quote skill reads `rates.yml`. If it is missing, or `confirmed` is
+# false, every quote it produces is marked provisional.
+
+confirmed: false
+last_reviewed: YYYY-MM-DD
+
+currency:
+  primary: UGX
+  reference: USD
+  # Check the live rate before sending any quote.
+  ugx_per_usd: 0
+  rate_taken: YYYY-MM-DD
+
+labour:
+  # cost_rate = what an hour actually costs you.
+  # bill_rate = what an hour is worth to a client for this class of work.
+  # The gap between them is the business. Do not quote at cost_rate.
+  cost_rate_usd_per_hour: 0
+  bill_rate_usd_per_hour: 0
+
+  # Absolute floor. Below this, decline the job. Protects against talking
+  # yourself into unprofitable work because you want the portfolio piece.
+  walk_away_floor_usd: 0
+
+  # Realistic billable hours per week, after admin, calls, and life.
+  billable_hours_per_week: 0
+
+overhead:
+  # Percentage of direct labour. Covers power, internet, hardware
+  # amortisation, and unbilled sales, scoping, and admin time.
+  rate: 0.00
+
+risk_buffer:
+  known_client: 0.15
+  new_client: 0.25
+
+margin:
+  # Price = cost / (1 - margin). Divide, do not multiply.
+  target: 0.00
+  minimum_acceptable: 0.00
+
+concurrency:
+  # How many projects typically run at once. Divides the subscription burn.
+  typical_concurrent_projects: 1
+
+# ---------------------------------------------------------------------------
+# Subscriptions. Monthly, in your reference currency.
+# Set `active: false` for anything you do not actually pay for.
+# ---------------------------------------------------------------------------
+subscriptions:
+  - name: AI coding assistant
+    monthly_usd: 0
+    active: false
+  - name: Hosting (Vercel or equivalent)
+    monthly_usd: 0
+    active: false
+  - name: Database (Supabase or equivalent)
+    monthly_usd: 0
+    active: false
+  - name: Design tool
+    monthly_usd: 0
+    active: false
+  - name: Scraping / brand extraction
+    monthly_usd: 0
+    active: false
+  - name: Image and video generation credits
+    monthly_usd: 0
+    active: false
+  - name: Stock imagery
+    monthly_usd: 0
+    active: false
+  - name: Email / workspace
+    monthly_usd: 0
+    active: false
+  - name: Source control
+    monthly_usd: 0
+    active: false
+
+# ---------------------------------------------------------------------------
+# Per-project spend. Charged to the specific job, not amortised.
+# ---------------------------------------------------------------------------
+project_costs:
+  domain_usd_per_year: 0
+  licensed_font_usd_typical: 0
+  paid_stock_usd_typical: 0
+  generation_credits_usd_typical: 0
+
+# ---------------------------------------------------------------------------
+# Reference pricing bands. Sanity checks, not a menu.
+# Fill these from real quotes you have won and lost in your own market.
+# ---------------------------------------------------------------------------
+reference_bands_usd:
+  landing_page_single: [0, 0]
+  brochure_site_5_page: [0, 0]
+  content_site_with_cms: [0, 0]
+  platform_with_auth_and_data: [0, 0]
+  cinematic_3d_flagship: [0, 0]
+
+payment_terms:
+  deposit_percent: 50
+  milestone_percent: 25
+  final_percent: 25
+  revision_rounds_included: 2
+  extra_revision_usd_per_round: 0
+  quote_validity_days: 30
+  note: Never begin work on a zero deposit, regardless of the relationship.
