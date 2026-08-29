@@ -103,13 +103,27 @@ This pass exists because defaults creep back in during implementation. Hunt spec
 - [ ] Copy voice drifting between sections built by different agents
 - [ ] Em dashes anywhere in the repo
 
-That last one is checkable, and the pattern must use the escape rather than the literal character so the check does not match itself:
+That last one is checkable. Two traps, both of which produce a false pass:
+
+1. Writing the literal character in the pattern makes the check match itself.
+2. `grep -P` fails with "supports only unibyte and UTF-8 locales" on some Windows and git-bash setups. It exits non-zero, so `grep ... && echo FOUND || echo CLEAN` prints CLEAN on an error that never actually searched anything.
+
+Use a form that cannot fail that way, and read the exit code rather than chaining on it:
 
 ```bash
-grep -rnP "\x{2014}" . --exclude-dir=node_modules --exclude-dir=.git
+LC_ALL=C.UTF-8 grep -rn $'—' . --exclude-dir=node_modules --exclude-dir=.git
+```
+
+PowerShell equivalent, which does not depend on locale at all:
+
+```powershell
+Get-ChildItem -Recurse -File | Where-Object { $_.FullName -notmatch '\\\.git\\' } |
+  Select-String -SimpleMatch ([char]0x2014)
 ```
 
 It is a house rule, so treat a hit as a finding.
+
+**General principle for this whole audit, not just this check:** a command that errors is not a command that passed. Confirm each check actually ran before recording its result. A green report built on a tool that never executed is worse than no report, because it stops anyone looking again.
 
 ---
 
