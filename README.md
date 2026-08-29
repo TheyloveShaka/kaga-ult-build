@@ -2,6 +2,16 @@
 
 A Claude Code plugin. The house method for building premium client websites, encoded so it runs the same way every time.
 
+## Why this exists
+
+Most of what circulates about building with AI is engagement bait. The same handful of prompts recycled endlessly, workflows that only ever worked in the demo, and a lot of LARPing by people who have not shipped the thing they are teaching. A fair amount of it is simply fake.
+
+But it is not all noise. Scattered through it there are real ideas, usually one or two per source, sitting underneath the theatre.
+
+So I went through a lot of it. I kept what survived contact with an actual build, threw out the rest, and turned what was left into this: one map, in one place, for anyone who wants to make things with Claude that are both beautiful and functional.
+
+It is opinionated on purpose. Take it, fork it, or argue with it.
+
 ## Install
 
 ```bash
