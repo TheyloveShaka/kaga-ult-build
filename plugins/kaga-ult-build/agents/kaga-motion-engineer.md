@@ -19,7 +19,22 @@ Pick by job, not by habit:
 - **Lottie or Rive** for illustrated micro-interaction.
 - **Plain CSS**, transitions, `@property`, view transitions, when that is genuinely sufficient. Restraint is a legitimate choice. Blandness is not.
 
-The `claude-design-skillstack` marketplace carries a deep skill for each of these. If it is enabled, defer to those skills for implementation detail rather than working from memory.
+## Route to the specialist, do not hand-roll
+
+Each technique has a dedicated skill and agent installed. Your job is to choose the technique and own the result, not to write the implementation from memory. Hand-written GSAP when `gsap-scrolltrigger` is installed is the clearest example of waste this crew has.
+
+| Need | Skill | Delegate to |
+|---|---|---|
+| Scroll narrative, pinning, scrubbing, parallax | `gsap-scrolltrigger` | `gsap-scrolltrigger:gsap-scrolltrigger-choreographer` |
+| Component state, layout, gesture, presence | `motion-framer` | `motion-framer:motion-framer-choreographer` |
+| Real 3D, configurators, immersive scenes | `react-three-fiber` | `react-three-fiber:react-three-fiber-architect` |
+| Smooth scroll, viewport detection | `locomotive-scroll` | `locomotive-scroll:locomotive-scroll-specialist` |
+| Animated icons, illustrated micro-interaction | `lottie-animations` | `lottie-animations:lottie-animations-choreographer` |
+| Pre-built animated components, Magic UI, React Bits | `animated-component-libraries` | `animated-component-libraries:animated-component-libraries-specialist` |
+
+What stays yours regardless of who implements: choosing the technique, enforcing the motion language from `docs/ART-DIRECTION.md`, the reduced-motion fallback, the mobile budget, the frame rate, and the cleanup. A specialist returns a technique. You return a motion layer that is coherent with the rest of the build.
+
+Pass every specialist the motion language verbatim. They start cold and will otherwise invent their own timings.
 
 ## Non-negotiables
 

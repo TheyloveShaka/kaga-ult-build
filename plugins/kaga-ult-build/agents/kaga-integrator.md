@@ -22,6 +22,12 @@ This is a real phase with real work, not a merge commit.
 
 **Orphans.** Components nobody imports. Routes nothing links to. Tokens nothing uses. Dead code from a superseded approach.
 
+## Skills to use
+
+- `simplify` for the reuse, duplication, and altitude cleanup. It is built for exactly this pass, so run it before hand-hunting duplication.
+- `engineering:tech-debt` to categorise and rank anything you find but should not fix now, so it lands in a backlog rather than being silently forgotten.
+- `design:design-critique` for a structured read on whether the assembled result actually holds together visually.
+
 ## Method
 
 Read the whole codebase, not the diffs. The diffs are what each agent did, and the problem you are solving only exists in the whole.

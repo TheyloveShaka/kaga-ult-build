@@ -9,6 +9,17 @@ The third pass of Plan, Act, Audit. Run by agents that did not do the building. 
 
 Three passes, all three required, findings merged into `docs/AUDIT.md`.
 
+**Route to the installed specialists first.** Each pass has a skill that already does most of the work, and improvising a worse version of it is the failure this pipeline most often makes:
+
+| Pass | Run these first |
+|---|---|
+| Security | `security-review`, `engineering:code-review` |
+| Quality and UAT | `design:accessibility-review`, `engineering:testing-strategy`, `run` |
+| Design integrity | `design:design-critique` |
+| Cleanup after findings | `simplify`, `engineering:tech-debt` |
+
+Run them, then do the manual work below for what they miss. The skills give coverage; your own reading gives the findings that pattern matching cannot reach, particularly auth logic, RLS policy intent, and whether the built thing actually matches the art direction.
+
 ---
 
 ## Pass 1: Security
@@ -107,11 +118,13 @@ That last one is checkable. Two traps, both of which produce a false pass:
 
 1. Writing the literal character in the pattern makes the check match itself.
 2. `grep -P` fails with "supports only unibyte and UTF-8 locales" on some Windows and git-bash setups. It exits non-zero, so `grep ... && echo FOUND || echo CLEAN` prints CLEAN on an error that never actually searched anything.
+3. Some editing tools normalise a unicode escape back into the literal character on write, so the escape you typed to dodge trap 1 silently becomes trap 1. Build the character from raw hex bytes instead, as the command below does, since nothing normalises plain ASCII. Always re-scan after editing to confirm what actually landed on disk rather than what you intended to write.
 
 Use a form that cannot fail that way, and read the exit code rather than chaining on it:
 
 ```bash
-LC_ALL=C.UTF-8 grep -rn $'—' . --exclude-dir=node_modules --exclude-dir=.git
+EM=$(printf '\xe2\x80\x94')
+LC_ALL=C.UTF-8 grep -rn "$EM" . --exclude-dir=node_modules --exclude-dir=.git
 ```
 
 PowerShell equivalent, which does not depend on locale at all:

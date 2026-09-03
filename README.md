@@ -32,15 +32,44 @@ Phase 1   Plan                  extraction, art direction, crew table, project C
 Phase 2   Act                   nine agents, delegated, parallel where possible
 Phase 3   Audit                 security, UAT in a real browser, design integrity
 Phase 4   Business case         true cost, margin, the number to quote
+Phase 5   Launch                deploy checklist, ship, verify live, handoff
 ```
 
-## The five laws
+## The six laws
 
 1. **Delegation is binding.** A plan that assigns an agent to a phase means that agent gets spawned. Doing it inline collapses the cost/quality tradeoff and erases the independent review.
 2. **Zero defaults.** No system fonts, no stock Tailwind palette, no unstyled shadcn shipped as-is.
 3. **Plan, Act, Audit.** Separate passes, separate actors. The builder never signs off on its own work.
 4. **No em dashes.** Anywhere in the repo.
 5. **Images are the product.** Every slot resolved before launch, or it is a blocker.
+6. **Do not reinvent an installed skill.** Route to the specialist. Hand-rolling a worse version of something already installed is the most common way this pipeline wastes money.
+
+## It orchestrates, it does not duplicate
+
+This plugin is a conductor. The depth lives in skills that already exist, and every phase routes to them rather than reimplementing them.
+
+| Phase | Routes to |
+|---|---|
+| Art direction | `modern-web-design`, `design:design-system`, `anthropic-skills:theme-factory` |
+| Architecture | `engineering:system-design`, `engineering:architecture`, `design:user-research` |
+| Frontend | `modern-web-design`, `animated-component-libraries`, `dataviz` |
+| Motion | `gsap-scrolltrigger`, `motion-framer`, `react-three-fiber`, `locomotive-scroll`, `lottie-animations`, each with its own specialist agent |
+| Copy and SEO | `design:ux-copy`, `engineering:documentation` |
+| Security | `security-review`, `engineering:code-review` |
+| UAT | `design:accessibility-review`, `engineering:testing-strategy`, `run` |
+| Integration | `simplify`, `engineering:tech-debt`, `design:design-critique` |
+| Quote | `anthropic-skills:docx`, `anthropic-skills:pptx` |
+| Launch | `engineering:deploy-checklist`, `design:design-handoff`, Vercel MCP tools |
+
+What this plugin adds on top: the pipeline order, the crew table and the rule that it binds, the six laws, the reference-hunt gate, the image plan, and the costed quote. If a routed skill is not installed, the orchestrator says so by name and falls back to doing the work directly rather than silently skipping it.
+
+### Recommended companions
+
+```bash
+claude plugin marketplace add freshtechbro/claudedesignskills
+```
+
+Then install at least `modern-web-design`, `gsap-scrolltrigger`, `motion-framer`, `react-three-fiber`, `locomotive-scroll`, `lottie-animations`, `animated-component-libraries`. The `design`, `engineering`, and `anthropic-skills` plugins supply the rest. Connect the Vercel MCP for Phase 5 deployment and live-error verification.
 
 ## Commands
 
@@ -81,14 +110,6 @@ Fill in your real numbers and set `confirmed: true`. Every future quote then use
 ## Default stack
 
 Next.js 15 App Router, TypeScript, Tailwind wired to CSS custom properties, shadcn/ui restyled, Supabase, Vercel. Chosen for the metadata API, JSON-LD, and image optimisation the SEO deliverable depends on. Override to Vite + React 19 for app-like builds with no SEO surface.
-
-## Pairs well with
-
-The `claude-design-skillstack` marketplace, which carries deep implementation skills for GSAP ScrollTrigger, React Three Fiber, Three.js, Framer Motion, Locomotive Scroll, Lottie, Rive, and Spline. The motion engineer defers to those skills when they are enabled.
-
-```bash
-claude plugin marketplace add freshtechbro/claudedesignskills
-```
 
 ## Licence
 

@@ -7,7 +7,7 @@ description: Kaga's master build orchestrator for premium client websites and we
 
 The house method. Every premium build runs through it. No exceptions, no shortcuts, no "this one is small so I'll just do it inline".
 
-## The five laws
+## The six laws
 
 These override convenience. If you are about to break one, stop and say so out loud instead.
 
@@ -21,6 +21,8 @@ These override convenience. If you are about to break one, stop and say so out l
 
 **5. Images are the product.** A site with placeholder greyboxes is not a deliverable at any price. Every build carries an image plan that is resolved before launch, either with sourced stock, generated assets, or a specific written ask to the client.
 
+**6. Do not reinvent an installed skill.** The environment carries specialist skills for accessibility, design systems, motion, SEO copy, security review, and deployment. Route to them. Hand-rolling a worse version of something already installed is the most common way this pipeline wastes money. See the skill routing table below.
+
 ## Choosing the track
 
 Read the brief, then pick:
@@ -32,6 +34,50 @@ Read the brief, then pick:
 **Track C, Feature or Update.** Existing codebase of ours, adding or reworking a slice. Skips extraction and full crew, runs a trimmed crew, but still Plan, Act, Audit.
 
 State which track you picked and why in one line before proceeding.
+
+---
+
+## Skill routing
+
+**Law 6: do not reinvent an installed skill.** Kaga's environment carries deep skills that already solve most of what this pipeline needs. Writing your own accessibility pass when `design:accessibility-review` exists is wasted work and a worse result. Before any phase, check this table and invoke what is listed.
+
+| Phase | Invoke these skills | Delegate to these agents |
+|---|---|---|
+| 0 Reference hunt | `kaga-reference-hunt`, `modern-web-design` | |
+| 1a Extraction | `kaga-art-direction` | |
+| 1b Art direction | `kaga-art-direction`, `design:design-system`, `anthropic-skills:theme-factory`, `modern-web-design` | `kaga-art-director`, `modern-web-design:modern-web-design-specialist` |
+| 1c Architecture | `engineering:system-design`, `engineering:architecture` (ADR for any real tech choice), `design:user-research`, `design:research-synthesis` | `kaga-ux-architect` |
+| 1d Image plan | `kaga-imagery` | |
+| 2 Frontend | `modern-web-design`, `animated-component-libraries` | `kaga-frontend-engineer`, `animated-component-libraries:animated-component-libraries-specialist` |
+| 2 Motion | pick per job, see below | see below |
+| 2 Backend | `engineering:system-design`, `engineering:architecture` | `kaga-backend-engineer` |
+| 2 Content and SEO | `design:ux-copy` | `kaga-content-seo` |
+| 2 Charts or data UI | `dataviz` | |
+| 3 Security | `security-review`, `engineering:code-review` | `kaga-security-auditor` |
+| 3 UAT | `design:accessibility-review`, `engineering:testing-strategy`, `run` | `kaga-uat-agent` |
+| 3 Design integrity | `design:design-critique` | `kaga-art-director` in audit mode |
+| 3 Integration | `simplify`, `engineering:tech-debt` | `kaga-integrator` |
+| 4 Quote | `kaga-quote`, `anthropic-skills:docx` or `anthropic-skills:pptx` for the client-facing version | |
+| 5 Launch | `engineering:deploy-checklist`, `design:design-handoff`, `engineering:documentation` | |
+
+### Motion routing
+
+Do not hand-roll animation. Route to the specialist for the technique:
+
+| Need | Skill | Agent |
+|---|---|---|
+| Scroll narrative, pinning, scrubbing, parallax | `gsap-scrolltrigger` | `gsap-scrolltrigger:gsap-scrolltrigger-choreographer` |
+| Component state, layout, gesture, presence | `motion-framer` | `motion-framer:motion-framer-choreographer` |
+| Real 3D, product configurators, immersive scenes | `react-three-fiber` | `react-three-fiber:react-three-fiber-architect` |
+| Smooth scroll, viewport detection | `locomotive-scroll` | `locomotive-scroll:locomotive-scroll-specialist` |
+| Illustrated micro-interaction, animated icons | `lottie-animations` | `lottie-animations:lottie-animations-choreographer` |
+| Pre-built animated components, Magic UI, React Bits | `animated-component-libraries` | `animated-component-libraries:animated-component-libraries-specialist` |
+
+`kaga-motion-engineer` stays the owner of the motion layer. Its job is to choose the technique, delegate to the right specialist, and enforce the motion language, reduced-motion fallback, and frame budget across whatever comes back. It does not implement what a specialist does better.
+
+### If a skill is missing
+
+These come from the `design`, `engineering`, `anthropic-skills`, and `claude-design-skillstack` plugins. If one is not available, say so, name the plugin that provides it, and fall back to doing the work directly. Never silently skip the step.
 
 ---
 
@@ -128,7 +174,7 @@ Reach for these, in this order of preference by job:
 - **Lottie or Rive** for illustrated micro-interaction.
 - **CSS + `@property` + view transitions** when that is genuinely enough. Restraint is a choice, blandness is not.
 
-The `claude-design-skillstack` marketplace carries deep skills for each of these. Enable it and defer to those skills for implementation detail rather than improvising.
+Each of these has a dedicated skill and a specialist agent installed. Route to them per the motion routing table above rather than improvising. Law 6 applies here more than anywhere: hand-written GSAP when `gsap-scrolltrigger` is installed is the single clearest example of the waste that law exists to prevent.
 
 Every motion decision respects `prefers-reduced-motion`. Non-negotiable.
 
@@ -140,7 +186,7 @@ Three audits, run by agents that did not build the thing.
 
 **Security** (`kaga-security-auditor`, see `kaga-audit`): dependency CVEs, secret leakage, auth and RLS correctness, input validation, XSS and injection surface, CSP and headers, rate limiting, exposed admin routes.
 
-**Quality and UAT** (`kaga-uat-agent`): does it match `PLAN.md`, does every acceptance criterion pass, responsive at 375 / 768 / 1440, keyboard path, screen reader landmarks, WCAG AA contrast, Lighthouse, real browser verification via the Browser pane tools with screenshots as proof.
+**Quality and UAT** (`kaga-uat-agent`): does it match `PLAN.md`, does every acceptance criterion pass, responsive at 375 / 768 / 1440, keyboard path, screen reader landmarks, WCAG AA contrast, Lighthouse, real browser verification via the Browser pane tools with screenshots as proof. Run `design:accessibility-review` for the WCAG pass rather than improvising a checklist, and `engineering:testing-strategy` when the build needs an actual test suite rather than a one-off walkthrough.
 
 **Design integrity** (`kaga-art-director`, returning): does the built thing match the art direction, or did defaults creep back in. Explicit hunt for: default fonts, default palette values, unstyled components, inconsistent radii, bland empty states, missing hover and focus states, greybox images.
 
@@ -151,6 +197,22 @@ Findings go to `docs/AUDIT.md` with severity. Blockers get fixed and re-audited.
 ## Phase 4: Business Doc
 
 Invoke `kaga-quote`. Produces `docs/BUSINESS-CASE.md`: true development cost, tool and subscription burn, overheads, margin, and the single number to put in front of the client. This is a separate deliverable from the build and is never shown to the client as-is, it is the internal basis for the quote.
+
+For the client-facing `docs/QUOTE.md`, render it as a real document rather than a markdown file in a repo the client cannot open. Use `anthropic-skills:docx` for a written proposal, or `anthropic-skills:pptx` when the pitch is a meeting rather than an email. A $10k proposal delivered as raw markdown undercuts the price before they read the number.
+
+---
+
+## Phase 5: Launch
+
+Only after Phase 3 has no open blockers.
+
+Run `engineering:deploy-checklist` first. It covers CI state, migrations, feature flags, approvals, and rollback triggers, so do not write your own version of that list.
+
+**Deploying.** If the Vercel MCP tools are connected, use them rather than shelling out: `deploy_to_vercel` to ship, `get_deployment_build_logs` when a build fails, `get_runtime_errors` and `get_runtime_logs` to confirm the deployed site is actually healthy rather than merely built. `check_domain_availability_and_price` and `buy_domain` handle the domain, but a purchase spends the user's money, so surface the price and get an explicit yes before buying anything.
+
+**After deploy, verify the live URL, not just the build.** A green build is not a working site. Open the deployed URL in the Browser pane, walk the critical path, and check `get_runtime_errors` before telling anyone it is live.
+
+**Handoff.** Run `design:design-handoff` for the spec sheet and `engineering:documentation` for the README and any runbook the client's own developer will need. Give the client: the live URL, the repo, the ongoing costs they now carry, and the written record of what they own.
 
 ---
 

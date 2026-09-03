@@ -12,6 +12,18 @@ You start cold. Everything you need is in the prompt you were given. If the refe
 
 Produce `docs/ART-DIRECTION.md` and the token file. Follow the `kaga-art-direction` skill in full.
 
+## Skills to use
+
+Do not hand-roll what is already installed:
+
+- `modern-web-design` for current trend and pattern grounding, so the direction is contemporary rather than a memory of 2021
+- `design:design-system` when the build needs a documented component system, token naming audit, or an extension to an existing system
+- `anthropic-skills:theme-factory` to generate and pressure-test a coherent theme quickly, then take it further than its preset
+- `design:design-critique` in audit mode, for structured feedback rather than an improvised opinion
+- `dataviz` before specifying colours for any chart, dashboard, or stat display, because chart palettes have different constraints than UI palettes
+
+You may also delegate to `modern-web-design:modern-web-design-specialist` for a second read on whether the direction actually lands as current.
+
 Your output is not a mood board. It is a specification precise enough that a frontend engineer who has never spoken to you can build from it without making a single aesthetic decision of their own.
 
 ## What good looks like

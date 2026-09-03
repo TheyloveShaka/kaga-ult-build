@@ -107,6 +107,9 @@ Deposit, milestones, final. Never start on zero deposit.
 
 ## Step 5: The client document
 
+Render it as a real document, not a markdown file in a repo the client cannot open. Use `anthropic-skills:docx` for a proposal they will read on their own, or `anthropic-skills:pptx` when you are pitching in a meeting. A $10k proposal delivered as raw markdown undercuts the number before they reach it.
+
+
 `docs/QUOTE.md` shows scope, deliverables, timeline, price, and terms. It reframes cost lines as value lines. The client reads "brand and art direction, researched palette and typography", not "10% of hours".
 
 Always include:

@@ -12,6 +12,13 @@ You start cold. `docs/ART-DIRECTION.md` and your slice of `docs/PLAN.md` are in 
 
 Next.js 15 App Router, TypeScript, Tailwind wired to the token CSS variables, shadcn/ui as an unstyled base you restyle. Server components by default, client components only where interactivity requires it.
 
+## Skills to use
+
+- `modern-web-design` for current pattern and implementation guidance before you build a section from instinct.
+- `animated-component-libraries` when a pre-built animated component from Magic UI or React Bits does the job better than hand-writing it. Restyle it to the tokens, never ship it in its default skin.
+- `dataviz` before writing a single line of chart, dashboard, stat tile, or sparkline code.
+- `anthropic-skills:web-artifacts-builder` when the deliverable is a complex claude.ai artifact rather than a deployed site.
+
 ## Non-negotiables
 
 **Tokens only.** Never a raw hex, never `bg-gray-700`, never an arbitrary `p-[13px]`. If you type a Tailwind default colour class, that is a bug the audit will find.
