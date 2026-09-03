@@ -45,9 +45,11 @@ State which track you picked and why in one line before proceeding.
 |---|---|---|
 | 0 Reference hunt | `kaga-reference-hunt`, `modern-web-design` | |
 | 1a Extraction | `kaga-art-direction` | |
-| 1b Art direction | `kaga-art-direction`, `design:design-system`, `anthropic-skills:theme-factory`, `modern-web-design` | `kaga-art-director`, `modern-web-design:modern-web-design-specialist` |
-| 1c Architecture | `engineering:system-design`, `engineering:architecture` (ADR for any real tech choice), `design:user-research`, `design:research-synthesis` | `kaga-ux-architect` |
-| 1d Image plan | `kaga-imagery` | |
+| 1b Concepts + adversarial gate | `kaga-scroll-narrative` for the structure of each concept | a *different* agent attacks the chosen concept |
+| 1c Art direction | `kaga-art-direction`, `design:design-system`, `anthropic-skills:theme-factory`, `modern-web-design` | `kaga-art-director`, `modern-web-design:modern-web-design-specialist` |
+| 1d Architecture | `engineering:system-design`, `engineering:architecture` (ADR for any real tech choice), `design:user-research`, `design:research-synthesis` | `kaga-ux-architect` |
+| 1d Shot list + image plan | `kaga-scroll-narrative`, `kaga-imagery` | |
+| 2 Scroll narrative | `kaga-scroll-narrative`, `gsap-scrolltrigger` | `kaga-motion-engineer` |
 | 2 Frontend | `modern-web-design`, `animated-component-libraries` | `kaga-frontend-engineer`, `animated-component-libraries:animated-component-libraries-specialist` |
 | 2 Motion | pick per job, see below | see below |
 | 2 Backend | `engineering:system-design`, `engineering:architecture` | `kaga-backend-engineer` |
@@ -183,7 +185,42 @@ Pull the client's existing brand truth before inventing anything:
 - Record what is worth keeping versus what is holding them back. Redesign means improving, not preserving mistakes.
 - Output: `docs/BRAND-EXTRACT.md`.
 
-### 1b. Art direction
+### 1b. Three concepts, then an adversarial gate
+
+Cheap divergence before expensive convergence. The most costly mistake on a premium build is executing the first idea beautifully, because a well-built weak concept still fails and you pay full price to find out.
+
+**Propose three distinct directions**, not three shades of one. Each gets a name, the narrative structure it uses (see `kaga-scroll-narrative`), the feeling it targets, and one line on why it fits the brief. They must be genuinely different bets: if two could share the same shot list, you have two, not three.
+
+Then present them and let the user pick. If they want to see more than one built, build them in parallel as separate agents and compare, but say what that costs first.
+
+**Then the adversarial gate, before any asset or component exists.** Hand the chosen concept to a *different* agent whose only job is to attack it:
+
+- Where does this concept fail on mobile?
+- What does it cost to build, and is the payoff worth it?
+- Which beat is decorative rather than persuasive?
+- What will the client's actual customer not understand?
+- Has this been done so often it now reads as generic?
+- What is the single weakest beat, and what replaces it?
+
+The reviewer does not get to redesign, only to find the holes. The concept either survives with fixes or gets replaced. Record the outcome in `docs/DECISIONS.md`.
+
+This gate is deliberately early because it is the cheapest place in the whole pipeline to be wrong. An hour here saves a rebuild.
+
+### Model tiering
+
+Put the expensive model where judgement compounds, and cheap models on the mechanical work. Spending top-tier tokens on scaffolding is waste, and spending cheap tokens on art direction shows in the output.
+
+| Expensive model owns | Cheap models handle |
+|---|---|
+| Art direction, palette, typography | Prompt scaffolding and boilerplate |
+| Concept and narrative structure | Cost and credit arithmetic |
+| The shot list | Consistency and link checking |
+| Architecture decisions | Mechanical refactors and renames |
+| The adversarial gate | Recon, inventory, and file sweeps |
+
+The crew table in 1d is where this gets recorded, and Law 1 makes it binding. Cross-validate design decisions with a *different* model rather than the one that made them, because a model reviewing its own judgement mostly agrees with itself.
+
+### 1c. Art direction
 
 Invoke `kaga-art-direction`. This produces the non-negotiable spine of the build:
 - A researched colour palette with rationale, not vibes. Named tokens, hex values, contrast ratios stated, dark mode mapping.
@@ -192,7 +229,7 @@ Invoke `kaga-art-direction`. This produces the non-negotiable spine of the build
 - A spacing and radius scale.
 - Output: `docs/ART-DIRECTION.md` plus the token file for the chosen stack.
 
-### 1c. Architecture and crew assignment
+### 1d. Architecture and crew assignment
 
 Write `docs/PLAN.md` containing:
 - Page and route inventory.
@@ -217,7 +254,7 @@ Crew table format:
 
 Adjust rows to the job. Never delete the audit rows.
 
-### 1d. Project CLAUDE.md
+### 1e. Project CLAUDE.md
 
 Use the `init` skill to generate or refresh it rather than hand-writing the file. Create or update the project's `CLAUDE.md` before building, not after. It must carry: the stack, the commands, the art direction tokens summary, the crew convention, and any project-specific law. If one exists, update it rather than overwriting, and preserve hard-won rules already in it.
 

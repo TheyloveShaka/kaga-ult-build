@@ -59,6 +59,19 @@ Mixed-source imagery only looks commissioned if it is graded as one set. Pick on
 
 The asset-assembly move worth knowing: generate a clean hero render of the subject and a matching exploded or deconstructed version, then drive the transition between them with scroll. Write the generation prompt with full specificity, subject, lighting, material, camera, background, aspect, and keep both renders on the same seed and framing so they align.
 
+### Generated video, and how not to overspend on it
+
+On a cinematic build the hero is often generated video rather than a still, and it is usually the largest single cost on the job. Four rules keep it sane:
+
+1. **Silent unless the site uses audio.** Rendering with audio costs materially more and most sites never play it. This is the most common avoidable waste on this kind of build.
+2. **Lock the shot list first.** See `kaga-scroll-narrative`. Regenerating because the narrative shifted is the expensive mistake, and it is entirely preventable.
+3. **Stills before film.** Lock composition with cheap still renders, then spend on motion only for the beats that genuinely need it. Not every beat has to be film.
+4. **Same seed, same camera, same grade across beats.** Continuity is what makes generated media read as one production. Two beautiful mismatched shots look worse than two plain matched ones.
+
+Budget the credits as a real line in `docs/BUSINESS-CASE.md`, get the user's agreement before spending on a client job, and record actual spend as you go.
+
+**Higgsfield** is the generation service this method was designed against: image and video models behind one CLI, authenticated by device login, driven in plain language once connected. It is paid and billed in credits. If it is not connected, say so rather than pretending, and fall back to stock video, a stills-plus-GSAP narrative, or a client-supplied asset. A well-choreographed stills build beats a generic site with a stock video header.
+
 **Existing** for Track A rebuilds, where the client's current site already has usable assets. Extract them, then judge them honestly. Reusing a bad image because it was already there is not a saving.
 
 ## Step 3: Produce the client ask

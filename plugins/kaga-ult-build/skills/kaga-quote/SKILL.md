@@ -123,6 +123,19 @@ Always include:
 
 Present both currencies where the client is local: UGX primary, USD reference, with the exchange rate and the date it was taken.
 
+## Cost receipt
+
+Every build closes with a receipt of what it actually cost to produce, appended to `docs/BUSINESS-CASE.md`:
+
+| Line | Actual |
+|---|---|
+| Models used, and on which phases | |
+| Generation credits spent, by asset | |
+| Paid stock or font licences | |
+| Hours by phase, actual against estimate | |
+
+This is the feedback loop that makes the next estimate better, and it is the only way to find out whether a job was actually profitable rather than merely paid. Where actual diverges from estimate by more than a quarter, write one line on why and append the lesson to `PATTERNS.md`.
+
 ## Honesty rule
 
 If the defaults in `rates.yml` have not been confirmed by Kaga, every number carries a provisional marker and the output says so at the top. Confident fake numbers are worse than an obvious placeholder, because a placeholder gets corrected and a confident wrong number gets sent to the client.

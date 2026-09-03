@@ -101,6 +101,7 @@ Then install at least `modern-web-design`, `gsap-scrolltrigger`, `motion-framer`
 | `kaga-art-direction` | Palette, typography, motion language, spacing |
 | `kaga-imagery` | Image inventory, sourcing, and the client ask |
 | `kaga-audit` | The three audit passes |
+| `kaga-scroll-narrative` | Scroll as a story: descent, assembly, exploded, transformation, journey. Shot list, generated media, cost discipline |
 | `kaga-launch-check` | The 20-point pre-launch sweep, verified in a browser |
 | `kaga-quote` | Cost, margin, and the client quote |
 
