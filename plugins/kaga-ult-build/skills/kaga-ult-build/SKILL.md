@@ -106,6 +106,51 @@ Keep all three terse. A log nobody reads because it is bloated is worse than no 
 
 Auto-routing hooks and a large ambient tool surface were rejected on purpose. They conflict with Law 1: routing here is an explicit crew table the user approves, not a background decision. Automatic coordination would make delegation invisible, which is exactly the failure this whole method was built to prevent.
 
+### Full inventory: the rest of what is installed
+
+The routing table above covers the main path. These apply less often but are still installed, and reaching for them beats improvising. Law 6 covers all of them.
+
+**Build-adjacent**
+
+| Skill | When |
+|---|---|
+| `init` | Phase 1d, generating or refreshing the project `CLAUDE.md`. Use it instead of hand-writing that file. |
+| `claude-api` | **Mandatory** before writing any code that calls Claude or any LLM: model ids, pricing, tool use, caching, streaming. Never answer a model or pricing question from memory. Applies to AI features inside client builds, which is a recurring pattern in this portfolio. |
+| `mcp-builder` | The build needs a custom MCP server to reach a client's internal system. |
+| `run` | Launching and driving the project's app to prove a change works. |
+
+**Design surfaces beyond the site itself**
+
+| Skill | When |
+|---|---|
+| `design` (canvas) | Mockups, wireframes, or screen flows the user wants to tweak visually before any code exists. Multi-artboard, pan and zoom, published as an Artifact. Strong fit between Phase 1b and Phase 2 when the direction needs to be seen before it is built. |
+| `canvas-design` | Print and static collateral for the client: posters, flyers, launch graphics. A site build often has marketing pieces attached. |
+| `artifact-design` | **Required** before writing any Artifact, including a Markdown one. Load it before, not after. |
+| `artifact-diagramming` | Diagrams inside an Artifact: architecture, flows, mechanism drawings that must read in both themes. |
+| `artifact-capabilities` | The Artifact needs runtime behaviour: persistence, shared state, live data, viewer identity, file storage. Load before declaring any capability. |
+| `web-artifacts-builder` | The deliverable is an elaborate multi-component Artifact rather than a deployed site. |
+
+**Client inputs and outputs**
+
+| Skill | When |
+|---|---|
+| `pdf` | Track A extraction where the client sends a brand book, style guide, or existing collateral as PDF. Pull the real palette and type out of it rather than guessing from screenshots. |
+| `xlsx` | The client hands over a product list, price sheet, vendor roster, or inventory as a spreadsheet that has to become seed data. Recurring on catalogue and directory builds. |
+| `docx` / `pptx` | The client-facing quote and proposal, per `kaga-quote` Step 5. |
+| `dataviz` | Any chart, dashboard, stat tile, or sparkline, read before the first line of chart code. |
+
+**Running the work**
+
+| Skill | When |
+|---|---|
+| `standup` | Client progress updates. A weekly written update from actual commits and PRs is the cheapest thing that keeps a client calm on a multi-week build. |
+| `task-management` | Tracking build tasks and commitments across a longer job. |
+| `memory-management` | Decoding a client's shorthand, internal names, and acronyms so their brief is understood the way a colleague would understand it. |
+| `incident-response` | A shipped client site goes down or breaks. Triage, communicate, then a blameless postmortem. Applies to anything under a maintenance arrangement. |
+| `schedule` / `loop` | Recurring post-launch checks on a live client site: uptime, form delivery, analytics sanity. |
+| `skill-creator` | Extending or fixing this plugin itself. Use it rather than hand-editing skill frontmatter and guessing at description triggering. |
+| `security-review` / `code-review` / `simplify` / `engineering:*` | Per the routing table and `kaga-audit`. |
+
 ### If a skill is missing
 
 These come from the `design`, `engineering`, `anthropic-skills`, and `claude-design-skillstack` plugins. If one is not available, say so, name the plugin that provides it, and fall back to doing the work directly. Never silently skip the step.
@@ -133,6 +178,8 @@ Runs in plan mode where available. No file writes except planning docs.
 Pull the client's existing brand truth before inventing anything:
 - Scrape the live URL for logo, favicon, OG images, hex codes, font families, spacing rhythm, tone of voice.
 - Use `WebFetch` for the raw HTML, or Firecrawl if the user has it connected, or the Browser pane tools to read a rendered page when the site is JS-heavy.
+- If the client sends a brand book, style guide, or collateral as PDF, run it through the `pdf` skill and pull the real palette, type, and spacing out of it. Do not eyeball a brand guide from a screenshot.
+- If they hand over a product list, price sheet, or roster as a spreadsheet, `xlsx` turns it into seed data.
 - Record what is worth keeping versus what is holding them back. Redesign means improving, not preserving mistakes.
 - Output: `docs/BRAND-EXTRACT.md`.
 
@@ -172,7 +219,7 @@ Adjust rows to the job. Never delete the audit rows.
 
 ### 1d. Project CLAUDE.md
 
-Create or update the project's `CLAUDE.md` before building, not after. It must carry: the stack, the commands, the art direction tokens summary, the crew convention, and any project-specific law. If one exists, update it rather than overwriting, and preserve hard-won rules already in it.
+Use the `init` skill to generate or refresh it rather than hand-writing the file. Create or update the project's `CLAUDE.md` before building, not after. It must carry: the stack, the commands, the art direction tokens summary, the crew convention, and any project-specific law. If one exists, update it rather than overwriting, and preserve hard-won rules already in it.
 
 Get plan approval from the user before Act.
 
@@ -190,6 +237,14 @@ Run independent phases in parallel where the dependency column allows it. P3, P5
 Each agent writes its own files and reports back. You do not rewrite their work in the main thread, you send it back with notes if it misses.
 
 Then **P9 integration is a real phase**, not a merge commit. The integrator's job is to make nine agents' output read as one designer's hand: consistent spacing rhythm, consistent motion timing, consistent copy voice, no orphaned components, no two spinners with different easing.
+
+### Show it before you build it
+
+When the direction needs to be seen rather than described, or the user is likely to want to move things by hand, use the `design` canvas skill to lay out artboards first. Cheaper to redirect a mockup than a built page, and it gives the user something to react to instead of approving a document.
+
+### AI features
+
+Any client build with an LLM feature in it: read `claude-api` before writing the first line. Model ids, pricing, tool use, and caching change, and answering from memory is how a client gets quoted against a model that no longer exists.
 
 ### Stack default
 

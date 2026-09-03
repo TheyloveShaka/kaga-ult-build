@@ -62,6 +62,15 @@ This plugin is a conductor. The depth lives in skills that already exist, and ev
 | Launch sweep | `kaga-launch-check`, mandatory on every build |
 | Launch | `engineering:deploy-checklist`, `design:design-handoff`, Vercel MCP tools |
 | Video references | `watch` (needs `yt-dlp` and `ffmpeg`) |
+| Project CLAUDE.md | `init` |
+| AI features in a build | `claude-api`, mandatory before LLM code |
+| Mockups before code | `design` canvas |
+| Client PDFs and spreadsheets | `pdf`, `xlsx` |
+| Artifact deliverables | `artifact-design`, `artifact-diagramming`, `artifact-capabilities`, `web-artifacts-builder` |
+| Print collateral | `canvas-design` |
+| Client updates, live-site incidents | `standup`, `incident-response`, `schedule` |
+
+The skill carries a full inventory of every installed skill and when it applies, so nothing sits unused.
 
 What this plugin adds on top: the pipeline order, the crew table and the rule that it binds, the six laws, the reference-hunt gate, the image plan, and the costed quote. If a routed skill is not installed, the orchestrator says so by name and falls back to doing the work directly rather than silently skipping it.
 
