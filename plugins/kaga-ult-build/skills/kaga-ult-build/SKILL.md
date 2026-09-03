@@ -57,8 +57,11 @@ State which track you picked and why in one line before proceeding.
 | 3 UAT | `design:accessibility-review`, `engineering:testing-strategy`, `run` | `kaga-uat-agent` |
 | 3 Design integrity | `design:design-critique` | `kaga-art-director` in audit mode |
 | 3 Integration | `simplify`, `engineering:tech-debt` | `kaga-integrator` |
+| 3 Launch sweep | `kaga-launch-check` (the 20-point gate, mandatory) | `kaga-uat-agent` |
 | 4 Quote | `kaga-quote`, `anthropic-skills:docx` or `anthropic-skills:pptx` for the client-facing version | |
 | 5 Launch | `engineering:deploy-checklist`, `design:design-handoff`, `engineering:documentation` | |
+
+Reference material that arrives as video (a competitor walkthrough, a technique tutorial, a client's own screen recording) goes through the `watch` skill, which transcribes it and extracts frames so it becomes usable context instead of something you guess at. It needs `yt-dlp` and `ffmpeg` on the machine.
 
 ### Motion routing
 
@@ -190,7 +193,22 @@ Three audits, run by agents that did not build the thing.
 
 **Design integrity** (`kaga-art-director`, returning): does the built thing match the art direction, or did defaults creep back in. Explicit hunt for: default fonts, default palette values, unstyled components, inconsistent radii, bland empty states, missing hover and focus states, greybox images.
 
+**Launch sweep** (`kaga-launch-check`): the twenty-point gate covering horizontal scroll, broken links and buttons, mobile menu, favicon, titles, meta descriptions, custom 404, dynamic copyright year, compressed images, placeholder text, dead nav, clickable logo, `tel:` and `mailto:` links, and designed success and error states. Mandatory on every build. These are the things a client's customer hits in the first thirty seconds, and every one of them is cheap to fix and embarrassing to miss.
+
 Findings go to `docs/AUDIT.md` with severity. Blockers get fixed and re-audited. Do not report a build as done with open blockers.
+
+### Enforcement: prove the specialists were used
+
+Law 6 is checkable, so check it. Before signing off Phase 3, answer these in writing in `docs/AUDIT.md`. A "no" is a finding against the build, not a note.
+
+- Which type foundry did the display and text faces come from, and is the licence valid for commercial client use? Neither may be on the banned list in `kaga-art-direction` without a written justification.
+- Which animated component library supplied the interactive components, and were they restyled to the tokens rather than shipped in their default skin?
+- Which motion specialist implemented each animation, and does every timing trace back to the motion language?
+- Are all page transitions and entrance choreography accounted for, with a reduced-motion fallback verified by emulation?
+- Was every image sourced against a written per-section intent, and is the whole set graded as one?
+- Are there any raw Tailwind default colour classes left in the codebase?
+
+If any answer is "we hand-rolled it", that is the exact waste Law 6 exists to prevent. Say so plainly rather than letting it pass.
 
 ---
 
@@ -220,7 +238,10 @@ Run `engineering:deploy-checklist` first. It covers CI state, migrations, featur
 
 Before you call anything finished, all of these are true:
 
-- [ ] Fonts are deliberately chosen and self-hosted or preloaded, never a system fallback by accident
+- [ ] `kaga-launch-check` run in full, every item PASS or explicitly N/A, zero UNVERIFIED
+- [ ] Fonts come from a named foundry, are licensed for commercial use, self-hosted or preloaded, and are not on the banned default list
+- [ ] Premium components and animation came from the installed specialist libraries, restyled to tokens, not hand-rolled
+- [ ] Every image sourced against a written per-section intent and graded as one set
 - [ ] Palette comes from `ART-DIRECTION.md`, zero raw Tailwind default colour classes in the codebase
 - [ ] Every interactive element has hover, focus-visible, active, and disabled states
 - [ ] Every empty state, loading state, and error state is designed, not default

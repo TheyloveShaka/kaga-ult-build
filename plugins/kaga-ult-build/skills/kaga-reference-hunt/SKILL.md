@@ -39,6 +39,8 @@ For each candidate, open it. A reference you have not looked at is a guess.
 
 When a site is JS-heavy or the fetch returns a shell, use the Browser pane: `preview_start` with the URL, then `get_page_text` or a screenshot. Read what is really there.
 
+When the reference arrives as video rather than a URL, a competitor walkthrough, a technique breakdown, a client's own screen recording, run it through the `watch` skill. It downloads, extracts frames, and transcribes, so the reference becomes real context instead of something you infer from a description. Requires `yt-dlp` and `ffmpeg` installed. Scroll-driven work is often only legible as video, so this matters more for motion references than for layout ones.
+
 ## Output format
 
 Present as a numbered list. Each entry:

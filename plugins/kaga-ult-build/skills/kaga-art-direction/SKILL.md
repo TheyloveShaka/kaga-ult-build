@@ -52,9 +52,41 @@ Choose two, occasionally three. Justify each against the audience and the medium
 - **Text / body**: carries the reading load. Optimised for the actual paragraph length on the page.
 - **Mono**, only if the product has code, data, or numerics that need it.
 
-Never ship the framework default. Never ship a system stack by accident. Inter is not a decision, it is the absence of one, so if you land on it, argue for it explicitly.
+### Banned by default
 
-Good hunting grounds: Google Fonts for licence-free production use, Fontshare, and the variable font catalogues. For a $10k build, a licensed foundry face is a legitimate line item in the quote.
+These are the faces that get reached for when no decision is made. Every one of them is a competent typeface, and that is exactly the problem: they are the sound of a site that nobody art-directed.
+
+`Inter`, `Roboto`, `Open Sans`, `Lato`, `Montserrat`, `Poppins`, `Nunito`, `Raleway`, `Source Sans`, `system-ui` as a primary, and any bare `font-sans` / `font-serif` / `font-mono` Tailwind default.
+
+To use one anyway you must write a sentence in `ART-DIRECTION.md` naming the specific property of that face that makes it right for this brief. "It is clean and readable" is not that sentence. If you cannot write it, pick something else.
+
+### Where to actually look
+
+Pick from real type sources, and pick for the brief:
+
+| Source | Use for |
+|---|---|
+| **Fontshare** (fontshare.com) | Free-for-commercial, genuinely characterful. Start here. Satoshi, Clash Display, General Sans, Switzer, Cabinet Grotesk, Bespoke Serif. |
+| **Google Fonts** | Free, reliable, self-hostable. Go past page one: Fraunces, Instrument Serif, Bricolage Grotesque, Playfair Display, DM Serif, Space Grotesk, Sora, Outfit, Newsreader. |
+| **Adobe Fonts** | Included with a Creative Cloud seat, wide serious catalogue. |
+| **Foundries** (Klim, Grilli Type, Pangram Pangram, Colophon, Displaay, ABC Dinamo) | When the budget carries a licence. At $10k a display licence is a legitimate line item, so put it in `docs/BUSINESS-CASE.md` rather than avoiding it. |
+| **Variable fonts** | One file, full weight and optical-size range. Prefer them when the design uses more than three weights. |
+
+**Check the licence before you commit.** Free for personal use is not free for a paying client's commercial site. Record the licence for every face in `ART-DIRECTION.md`, and if a paid licence is needed, say who buys it, you or the client.
+
+### Pairing that reads as one system
+
+Two faces, occasionally three, and they must relate deliberately:
+
+- **Contrast pairing**: expressive display against a quiet workhorse text face. The most reliable premium look.
+- **Superfamily**: a serif and sans from the same designer, sharing skeleton and metrics. Cohesive by construction.
+- **Single family, worked hard**: one variable face used across a real range of weight, size, and optical size. Restraint, done properly, reads as confidence.
+
+Whatever the approach, the two faces must not merely coexist, they must look chosen together. State the relationship in one line.
+
+### Market fit
+
+Match the face to the audience, not to a Dribbble shot. For a Ugandan or East African client, check that the face carries any diacritics the copy needs, that it renders correctly at the sizes real users will see it on mid-range Android, and that the whole set is small enough to load on a slower connection. A beautiful face that ships 400KB and blocks first paint is a worse decision than a plain one.
 
 ### Scale and rhythm
 

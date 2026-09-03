@@ -16,6 +16,7 @@ Three passes, all three required, findings merged into `docs/AUDIT.md`.
 | Security | `security-review`, `engineering:code-review` |
 | Quality and UAT | `design:accessibility-review`, `engineering:testing-strategy`, `run` |
 | Design integrity | `design:design-critique` |
+| Launch sweep | `kaga-launch-check`, mandatory on every build |
 | Cleanup after findings | `simplify`, `engineering:tech-debt` |
 
 Run them, then do the manual work below for what they miss. The skills give coverage; your own reading gives the findings that pattern matching cannot reach, particularly auth logic, RLS policy intent, and whether the built thing actually matches the art direction.

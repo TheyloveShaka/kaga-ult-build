@@ -59,7 +59,9 @@ This plugin is a conductor. The depth lives in skills that already exist, and ev
 | UAT | `design:accessibility-review`, `engineering:testing-strategy`, `run` |
 | Integration | `simplify`, `engineering:tech-debt`, `design:design-critique` |
 | Quote | `anthropic-skills:docx`, `anthropic-skills:pptx` |
+| Launch sweep | `kaga-launch-check`, mandatory on every build |
 | Launch | `engineering:deploy-checklist`, `design:design-handoff`, Vercel MCP tools |
+| Video references | `watch` (needs `yt-dlp` and `ffmpeg`) |
 
 What this plugin adds on top: the pipeline order, the crew table and the rule that it binds, the six laws, the reference-hunt gate, the image plan, and the costed quote. If a routed skill is not installed, the orchestrator says so by name and falls back to doing the work directly rather than silently skipping it.
 
@@ -78,6 +80,7 @@ Then install at least `modern-web-design`, `gsap-scrolltrigger`, `motion-framer`
 | `/kaga-build <brief>` | Full pipeline, Phase 0 through 4 |
 | `/kaga-refs <sector, audience, feeling>` | Just the reference hunt |
 | `/kaga-audit [scope]` | Just the three-pass audit |
+| `/kaga-launch-check [url]` | The 20-point pre-launch sweep |
 | `/kaga-quote [project]` | Just the business case and client quote |
 
 ## Skills
@@ -89,6 +92,7 @@ Then install at least `modern-web-design`, `gsap-scrolltrigger`, `motion-framer`
 | `kaga-art-direction` | Palette, typography, motion language, spacing |
 | `kaga-imagery` | Image inventory, sourcing, and the client ask |
 | `kaga-audit` | The three audit passes |
+| `kaga-launch-check` | The 20-point pre-launch sweep, verified in a browser |
 | `kaga-quote` | Cost, margin, and the client quote |
 
 ## Agents

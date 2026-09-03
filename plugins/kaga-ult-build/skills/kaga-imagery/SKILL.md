@@ -30,13 +30,30 @@ Weight matters: a critical hero justifies a licensed photo or a commissioned sho
 
 **ASK CLIENT** when the image must be true. Real premises, real staff, real product, real work. No amount of stock or generation substitutes for a photo of the actual thing, and faking it is a credibility risk for the client. Default to this for local businesses, venues, services, and portfolios.
 
-**Stock** for context, texture, atmosphere, and abstract support. Prefer sources whose licence is clean for commercial client work:
-- Unsplash, Pexels, Pixabay for free commercial use, but audit for the overused shots
-- Paid libraries when the budget carries it, and put the line item in the quote
+**Stock** for context, texture, atmosphere, and abstract support.
 
-Screen every stock candidate against: does this look like stock. If it has the glossy handshake energy, reject it.
+### Sourcing premium stock, per section
 
-For an African or Ugandan market build, actively source imagery that reflects the actual audience. Generic Western stock in a Kampala business's hero is a visible mistake and clients notice it.
+Source images **during the build, section by section**, against that section's role and the art direction. Do not batch-pick a folder of nice photos up front and distribute them afterwards, that is how a site ends up looking like a mood board rather than a designed thing.
+
+For each slot, write the search intent from the art direction before searching: subject, mood, palette fit, orientation, and where the text will overlay. Then pick against that intent rather than picking whatever looks nice.
+
+| Source | Licence | Best for |
+|---|---|---|
+| **Unsplash** | Free commercial, no attribution required | Editorial, atmospheric, texture. Deep but heavily overused, so go past page one. |
+| **Pexels** | Free commercial | Lifestyle, people, video too. |
+| **Pixabay** | Free commercial | Fills gaps, generally weaker curation. |
+| **Burst** (Shopify) | Free commercial | Product and ecommerce contexts. |
+| **Nappy** | Free commercial | Genuinely good imagery of Black and brown people, which most libraries handle poorly. |
+| **Unsplash+ / Adobe Stock / Stocksy** | Paid | When the hero has to carry the whole page. Stocksy in particular does not look like stock. Put the licence in `docs/BUSINESS-CASE.md`. |
+
+**Reject on sight:** the glossy handshake, the laughing-alone-with-salad genre, fake diverse-team-around-a-laptop, anything with a visible competitor's branding, and any shot you have already seen on three other sites. If a candidate feels familiar, it is overused, and a client who recognises their hero image from a template has lost confidence in the whole build.
+
+**Market fit is not optional.** For a Ugandan or East African client, source imagery that reflects the actual audience and setting. Generic Western stock in a Kampala business's hero is immediately visible to the people it is meant to convert, and clients notice it before they notice anything you did well. `Nappy` and targeted searches on the free libraries handle most of this; where they do not, that slot becomes an `ASK CLIENT`.
+
+### Cohesion
+
+Mixed-source imagery only looks commissioned if it is graded as one set. Pick one treatment in `ART-DIRECTION.md` and apply it to every photo: a consistent colour grade, a consistent contrast curve, an optional shared grain or duotone. State the treatment, then apply it, and check the set side by side rather than image by image.
 
 **Generate** for assets that do not exist and do not need to be true: abstract textures, 3D product renders, exploded views, gradients, background art, pattern work.
 
