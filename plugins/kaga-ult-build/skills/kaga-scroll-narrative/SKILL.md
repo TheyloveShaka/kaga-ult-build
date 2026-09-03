@@ -57,6 +57,35 @@ Every beat states: the visual, where the media comes from, the copy intent, the 
 
 **Reduced motion gets a designed static version**, not an empty page. The narrative collapses to a well-composed stack of the key frames with the copy intact. Specify it beat by beat, and verify it by emulating the setting.
 
+## Separate the background from the text before you build
+
+The most useful technique on this whole page, and the least obvious.
+
+When you compose a hero as a generated image, the text is baked into the pixels. Handing that to a builder produces one of two failures: it tries to recreate the background in CSS and gets a worse version, or it leaves the text as part of the image, which is unselectable, untranslatable, invisible to search engines, and unreadable to a screen reader.
+
+Instead, generate the composition, then derive **two** assets from it:
+
+1. **Background only.** Same image, every piece of text, every button, icon, and overlay shape removed. High resolution. This becomes the actual CSS background or video layer.
+2. **Layout reference only.** The text and UI elements in their exact positions, on a flat background, no imagery. This is a *reference for the builder*, never a shipped asset.
+
+Then the instruction is: build the text and UI as real DOM, positioned per the layout reference, over the background asset. Name the typeface explicitly, per `kaga-art-direction`.
+
+You get real, selectable, accessible, responsive text over a genuinely rich background, which is exactly the thing that is otherwise hard to achieve.
+
+## Text over motion has to stay readable
+
+A busy video behind live text is the most common way this genre fails. The composition looked fine as a still and the copy is unreadable in motion.
+
+Fix it in the design, not with a blanket dark overlay slapped over everything, which flattens the media you just paid to generate:
+
+- Generate or grade the media with a quiet zone where the text sits. Solve it upstream and you need no scrim at all.
+- If a scrim is needed, use a directional gradient behind the text only, not a flat wash over the frame.
+- Text shadow that is felt rather than seen, and never a hard drop shadow.
+- Reduce the type size rather than fighting the background. Oversized text over motion is harder to read, not easier.
+- Check contrast against the *brightest frame* of the video, not a screenshot of the darkest one.
+
+Verify by scrubbing the whole beat and reading the copy at each point, not by looking at one frame.
+
 ## Cost discipline for generated media
 
 Generated video is usually the single largest line item on this kind of build, and it is easy to spend badly.
@@ -69,6 +98,15 @@ Generated video is usually the single largest line item on this kind of build, a
 - **Budget the credits into `docs/BUSINESS-CASE.md`** as a real project cost, and record actual spend as you go.
 
 Sequence: still frames first to lock composition cheaply, then video only for the beats that genuinely need motion. A site does not need every beat to be film.
+
+**Approve the frame before you buy the film.** Generate the opening still, show it to the user, get an explicit yes, and only then spend credits animating it. State the credit cost and the remaining balance before each generation and before any regeneration, so the decision to iterate is made with the price visible. Animating a frame nobody approved is the most predictable way to waste a budget.
+
+**Prompt specifics that matter for video:**
+
+- Say **"no zoom in, no zoom out"** unless you want a push. Generators default to a slow drift that reads as a screensaver and fights scroll-driven motion.
+- Ten seconds is usually enough for a scroll beat. 1080p is enough for web. 4K is money spent on pixels nobody sees.
+- Ask for a seamless loop where the beat repeats.
+- To get a specific effect you cannot describe, supply a **reference clip** and instruct it to take the motion only, explicitly not the colour, subject, or composition. A few seconds of screen recording is enough.
 
 ## Generative media sources
 

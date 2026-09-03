@@ -46,7 +46,8 @@ State which track you picked and why in one line before proceeding.
 | 0 Reference hunt | `kaga-reference-hunt`, `modern-web-design` | |
 | 1a Extraction | `kaga-art-direction` | |
 | 1b Concepts + adversarial gate | `kaga-scroll-narrative` for the structure of each concept | a *different* agent attacks the chosen concept |
-| 1c Art direction | `kaga-art-direction`, `design:design-system`, `anthropic-skills:theme-factory`, `modern-web-design` | `kaga-art-director`, `modern-web-design:modern-web-design-specialist` |
+| 1c Art direction | `kaga-art-direction`, `kaga-conversion`, `design:design-system`, `anthropic-skills:theme-factory`, `modern-web-design` | `kaga-art-director`, `modern-web-design:modern-web-design-specialist` |
+| 2 Conversion pass | `kaga-conversion`, `design:ux-copy` | `kaga-content-seo`, `kaga-ux-architect` |
 | 1d Architecture | `engineering:system-design`, `engineering:architecture` (ADR for any real tech choice), `design:user-research`, `design:research-synthesis` | `kaga-ux-architect` |
 | 1d Shot list + image plan | `kaga-scroll-narrative`, `kaga-imagery` | |
 | 2 Scroll narrative | `kaga-scroll-narrative`, `gsap-scrolltrigger` | `kaga-motion-engineer` |
@@ -212,7 +213,7 @@ Put the expensive model where judgement compounds, and cheap models on the mecha
 
 | Expensive model owns | Cheap models handle |
 |---|---|
-| Art direction, palette, typography | Prompt scaffolding and boilerplate |
+| Art direction, palette, typography | Minor edits: type sizes, spacing, removing a divider |
 | Concept and narrative structure | Cost and credit arithmetic |
 | The shot list | Consistency and link checking |
 | Architecture decisions | Mechanical refactors and renames |
@@ -272,6 +273,12 @@ Execute the crew table. For each phase, spawn the assigned agent with `Agent`, p
 Run independent phases in parallel where the dependency column allows it. P3, P5, and P6 usually can overlap.
 
 Each agent writes its own files and reports back. You do not rewrite their work in the main thread, you send it back with notes if it misses.
+
+### Review in batches, not one fix at a time
+
+When a build comes back, do one uninterrupted pass through the whole site and write down everything wrong, then send it all as a single set of revisions. Fixing one thing at a time costs a full round trip per item, and it hides the pattern: five spacing complaints in one list is a token-scale problem, whereas the same five reported one by one get patched individually and the cause survives.
+
+Route the batch by weight: structural or design-level changes go back to the model that owns that decision, while mechanical edits (type sizes, spacing, removing a stray divider) go to a cheap model. Do not spend top-tier tokens deleting a border.
 
 Then **P9 integration is a real phase**, not a merge commit. The integrator's job is to make nine agents' output read as one designer's hand: consistent spacing rhythm, consistent motion timing, consistent copy voice, no orphaned components, no two spinners with different easing.
 
@@ -362,6 +369,7 @@ Before you call anything finished, all of these are true:
 - [ ] Fonts come from a named foundry, are licensed for commercial use, self-hosted or preloaded, and are not on the banned default list
 - [ ] Premium components and animation came from the installed specialist libraries, restyled to tokens, not hand-rolled
 - [ ] Every image sourced against a written per-section intent and graded as one set
+- [ ] `kaga-conversion` checklist passed: hero answers who/what/next in five seconds, CTAs are the highest-contrast element, no ghost button carries a primary action
 - [ ] Palette comes from `ART-DIRECTION.md`, zero raw Tailwind default colour classes in the codebase
 - [ ] Every interactive element has hover, focus-visible, active, and disabled states
 - [ ] Every empty state, loading state, and error state is designed, not default

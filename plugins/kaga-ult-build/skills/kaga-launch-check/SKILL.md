@@ -77,6 +77,20 @@ These three convert. On a local business site they are often the entire point of
 
 ---
 
+## Block F: AI-tell artifacts
+
+A recognisable set of defects appears in generated builds regardless of the model. They are the tell that a site was assembled rather than designed, and clients read them as cheapness without being able to name why. Sweep for them specifically.
+
+- **Unrequested fills and strokes.** Cards given both a background fill and a border when the design called for one or neither. Nested boxes each with their own outline. Decide per component whether it is a fill, a stroke, or nothing, then enforce it.
+- **Volunteer dividers.** Horizontal rules inserted between sections, in footers, and inside cards that nothing asked for. They fragment the page and fight the spacing rhythm. Remove every one that is not a deliberate design element.
+- **Inconsistent section spacing.** Generated sections arrive with slightly different vertical padding. Unify to the scale. This is the single biggest contributor to a page feeling "off" while every component looks fine.
+- **Duplicate near-identical components.** Three card variants doing one job. `kaga-integrator` owns this, but check it here too.
+- **Default rounding everywhere.** One radius applied uniformly to every element regardless of role.
+- **Generic filler copy.** Sections that exist because a template has them, saying nothing specific about this business.
+- **Icon soup.** Mixed icon sets, inconsistent weights and sizes in one row.
+- **Text baked into an image** where it should be DOM. Unselectable, invisible to search, unreadable to a screen reader. See `kaga-scroll-narrative`.
+- **The mobile stack default.** Anything laid out in a row on desktop stacking vertically on mobile whether or not that is right. A three-item stat row usually wants to stay one row at a smaller size, not become three.
+
 ## Beyond the list
 
 The twenty above are the floor, not the bar. A build going out at premium price also clears:

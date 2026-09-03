@@ -30,6 +30,16 @@ Do not ship a single brand colour and five greys. Build:
 | Semantic | success, warning, danger, info | Tuned to the palette, not stock red/green |
 | Surface | 3 to 4 elevations | Background, raised, overlay, sunken |
 
+### Distribution: roughly 60 / 30 / 10
+
+Having the right colours is not the same as using them in the right proportion. A palette applied evenly reads as loud and cheap.
+
+- **~60% dominant**, usually the neutral ground: backgrounds, surfaces, large fields.
+- **~30% brand**, carrying identity across sections without saturating them.
+- **~10% accent**, reserved so it still has force where it lands: primary CTAs, the one thing per section that must be noticed.
+
+Not a law, a starting discipline. Break it deliberately and say why. The common failure is spending the accent everywhere, after which nothing stands out and the CTA competes with decoration. See `kaga-conversion`.
+
 ### Rules
 
 - Every value gets a token name. No hex in components.
@@ -95,6 +105,14 @@ Match the face to the audience, not to a Dribbble shot. For a Ugandan or East Af
 - Line height inverse to size: tight for display, generous for body.
 - Measure capped at 60 to 75 characters. `max-w-prose` is not automatic, set it deliberately.
 - Optical tracking: negative at display sizes, near zero at body, positive for small caps and eyebrows.
+
+### Name the font, never let it be inferred
+
+A model shown a reference image will guess the typeface, and it guesses wrong. The result is a build that looks close but not right, and the reason is invisible until someone names it.
+
+So identify the face explicitly, then pass the name to whoever builds. To match a face from a reference: compare against a catalogue of popular faces visually, or use a font identification service, then confirm by setting the same string in the same weight and comparing letterforms side by side. Look at `a`, `g`, `R`, and the numerals, which differ most between similar faces.
+
+Then in every downstream prompt and spec: state the family name and where it loads from. "Use Instrument Serif, imported from Google Fonts, weight 400" is a specification. "Match the font in the reference" is a guess with extra steps.
 
 ### Loading
 

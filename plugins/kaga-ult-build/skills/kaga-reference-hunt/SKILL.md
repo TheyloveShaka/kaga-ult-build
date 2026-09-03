@@ -58,6 +58,21 @@ N. <Name> - <url>
 Bad: "Great use of whitespace and clean typography."
 Good: "Hero holds a single 12vw headline with the product image bleeding off the right edge, and the nav only appears on scroll-up after 60vh."
 
+## Remix, never copy
+
+The output of a hunt is a composite, not a clone. Take one attribute from each reference and combine them into something none of the sources is:
+
+- Text placement and layout rhythm from one
+- Palette from another
+- Graphic or material treatment from a third
+- Motion behaviour from a fourth
+
+Be explicit about which attribute you are taking. "From reference 3, only the way the two text blocks sit relative to each other" is a usable instruction. "Make it like reference 3" is copying, and it produces a site that is both derivative and legally uncomfortable.
+
+Screenshots are fine as working material, and they do not need to be high quality; they exist to communicate an attribute, not to be traced. Collage them so the combination can be judged before anything is built. Never ship a competitor's asset, layout wholesale, or copy.
+
+The test: could the owner of any single reference look at the finished site and recognise their work. If yes, you copied. If they would only recognise a shared sensibility, you composed.
+
 ## The ask
 
 End every hunt with the question, and stop:
