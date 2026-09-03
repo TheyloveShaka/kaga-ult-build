@@ -78,6 +78,34 @@ Do not hand-roll animation. Route to the specialist for the technique:
 
 `kaga-motion-engineer` stays the owner of the motion layer. Its job is to choose the technique, delegate to the right specialist, and enforce the motion language, reduced-motion fallback, and frame budget across whatever comes back. It does not implement what a specialist does better.
 
+### Crew memory
+
+Borrowed from harness designs that treat memory as infrastructure. The gap it fixes: every agent here starts cold, so context gets re-derived, decisions get silently reversed between phases, and nothing learned on one build reaches the next.
+
+Three files, all cheap to maintain:
+
+**`docs/CREW-LOG.md`**, the shared blackboard for this build. Every agent appends before returning: what it decided, what it assumed, what it left for someone else, what it could not resolve. Every agent reads it before starting. This is what stops the frontend engineer inventing a value the art director already settled, and it costs far less than passing full context to nine cold agents.
+
+Append-only, one block per handoff:
+
+```
+## P3 kaga-frontend-engineer
+Decided: card radius 12px per token scale, not the 8px in the mockup
+Assumed: testimonial count is variable, built for 2 to 6
+Left for: motion engineer, hooks on .card-grid, expects stagger on entry
+Unresolved: hero image slot still ASK CLIENT
+```
+
+**`docs/DECISIONS.md`**, the short list of things now settled. Anything reopened must be argued against what is written here, not re-litigated from scratch. Keep it to one line per decision.
+
+**`PATTERNS.md`** at the plugin root, the only file that crosses projects. After a build ships, append what actually worked and what cost time: a palette structure that landed, a section pattern clients kept approving, a library that fought the stack, a client-ask that always arrives late. Read it during Phase 1 of the next build. This is the compounding part, and it is the single highest-value idea in that whole harness.
+
+Keep all three terse. A log nobody reads because it is bloated is worse than no log.
+
+### What was deliberately not taken
+
+Auto-routing hooks and a large ambient tool surface were rejected on purpose. They conflict with Law 1: routing here is an explicit crew table the user approves, not a background decision. Automatic coordination would make delegation invisible, which is exactly the failure this whole method was built to prevent.
+
 ### If a skill is missing
 
 These come from the `design`, `engineering`, `anthropic-skills`, and `claude-design-skillstack` plugins. If one is not available, say so, name the plugin that provides it, and fall back to doing the work directly. Never silently skip the step.
