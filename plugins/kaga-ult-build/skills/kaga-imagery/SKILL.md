@@ -95,6 +95,17 @@ If any of these do not exist, tell us and we will source an alternative.
 
 Surface this to Kaga early, not at launch. Clients are slow, and a build that stalls waiting on photos is a build that ran late for a reason that was predictable in week one.
 
+## Reference images cost tokens, deliverables do not
+
+Vision input is tokenized by pixel area, roughly one token per 28x28 patch, so cost scales with resolution rather than with information content. A 4K screenshot of a reference site can cost several thousand tokens to convey what a 1280x720 version conveys for about 1,200.
+
+So split the two directions:
+
+- **Inbound, into context**: downscale every reference, screenshot, competitor capture, and mood image to 1280x720 or smaller before it enters a prompt. You are reading composition, colour, and placement, none of which need full resolution.
+- **Outbound, what ships**: full resolution, untouched. Law 5 makes images the product, so this optimisation must never reach a deliverable asset.
+
+Never downscale on the way out. Never pay full resolution on the way in.
+
 ## Step 4: Technical treatment
 
 Non-negotiable for every image that ships:
