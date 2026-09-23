@@ -134,7 +134,7 @@ Every build closes with a receipt of what it actually cost to produce, appended 
 | Paid stock or font licences | |
 | Hours by phase, actual against estimate | |
 
-This is the feedback loop that makes the next estimate better, and it is the only way to find out whether a job was actually profitable rather than merely paid. Where actual diverges from estimate by more than a quarter, write one line on why and append the lesson to `PATTERNS.md`.
+This is the feedback loop that makes the next estimate better, and it is the only way to find out whether a job was actually profitable rather than merely paid. Where actual diverges from estimate by more than a quarter, write one line on why and append the lesson to `~/.claude/kaga/lessons.md`.
 
 ## Honesty rule
 

@@ -91,7 +91,35 @@ A recognisable set of defects appears in generated builds regardless of the mode
 - **Text baked into an image** where it should be DOM. Unselectable, invisible to search, unreadable to a screen reader. See `kaga-scroll-narrative`.
 - **The mobile stack default.** Anything laid out in a row on desktop stacking vertically on mobile whether or not that is right. A three-item stat row usually wants to stay one row at a smaller size, not become three.
 
-## Block G: Legal and consent
+## Block G: Regressions from past builds
+
+Each of these reached Kaga at least once. Run the checks, do not eyeball them.
+
+**Font audit.** Every text node uses the named families, numerals included. Run in the page console and expect an empty list:
+```js
+const allowed = ['General Sans', 'Satoshi'];
+[...new Set([...document.querySelectorAll('body *')].filter(e => e.childNodes.length && [...e.childNodes].some(n => n.nodeType === 3 && n.textContent.trim())).map(e => getComputedStyle(e).fontFamily.split(',')[0].replace(/["']/g, '').trim()))].filter(f => !allowed.includes(f))
+```
+Set `allowed` to the families in `ART-DIRECTION.md`.
+
+**Rendered em dashes.** The repo scan misses generated and CMS copy. Expect `false`:
+```js
+document.body.innerText.includes(String.fromCharCode(8212))
+```
+
+**Live assets.** On the deployed URL, not localhost. Expect an empty list, then confirm the favicon renders in the tab:
+```js
+[...document.images].filter(i => !i.complete || i.naturalWidth === 0).map(i => i.currentSrc || i.src)
+```
+Paths are case-sensitive once hosted, so `Logo.png` and `logo.png` are different files there even when they match locally.
+
+**Reload and navigation.** Hard reload, back, forward, and route change on every animated page. Nav and sections must survive each one; a GSAP or ScrollTrigger setup that only runs on first load fails here.
+
+**Collapsed nav.** At 375px, open the menu, follow a link, and confirm it closes.
+
+**Fixes verified where reported.** Every item from the last revision batch rechecked at its element and breakpoint.
+
+## Block H: Legal and consent
 
 - **Privacy policy page**, real and specific to what the site actually collects. Uganda's Data Protection and Privacy Act 2019 applies to personal data collected from Ugandans, so a Kampala client collecting names, phones, or emails needs one. Flag it to the client as their legal responsibility; do not present a template as legal advice.
 - **Terms page** where the site sells, books, or takes accounts.
@@ -99,7 +127,7 @@ A recognisable set of defects appears in generated builds regardless of the mode
 - **Spam protection** on every public form: a honeypot or a lightweight challenge, plus server-side rate limiting.
 - **Form validation** client side for the user's benefit and server side as the actual control.
 
-## Block H: Operational readiness
+## Block I: Operational readiness
 
 What separates a site that launches from a site that survives its first busy week:
 

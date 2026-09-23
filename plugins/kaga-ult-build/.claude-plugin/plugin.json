@@ -1,7 +1,7 @@
 {
   "name": "kaga-ult-build",
-  "version": "1.8.0",
-  "description": "Kaga's master build system for premium client websites. Orchestrates a nine-agent crew (art direction, UX, frontend, motion, backend, content/SEO, security, UAT, integration) through Plan then Act then Audit then Launch. Routes every phase to the installed specialist skills (modern-web-design, GSAP, Framer Motion, R3F, accessibility-review, security-review, ux-copy, deploy-checklist) rather than reimplementing them. Enforces a mandatory 10-site reference hunt, researched colour palettes and typography, a resolved image plan, zero framework defaults, baked-in security review, and a costed client quote. Use for any new site, redesign, landing page, or major visual feature that must look like a $10k+ agency build.",
+  "version": "2.0.0",
+  "description": "Kaga's master build system for premium client websites. Opus 5.5 leads (GPT-6 Astra only on explicit instruction) a nine-agent crew through Plan, Act, Audit with a human gate. Routes every phase to installed specialist skills, enforces reference fidelity, researched art direction, a resolved image plan, zero defaults, baked-in security, a costed quote, and learns from past builds through a lessons file and a history-mining retro.",
   "author": {
     "name": "Kaga",
     "url": "https://github.com/TheyloveShaka"
@@ -27,7 +27,8 @@
     "./commands/kaga-refs.md",
     "./commands/kaga-audit.md",
     "./commands/kaga-launch-check.md",
-    "./commands/kaga-quote.md"
+    "./commands/kaga-quote.md",
+    "./commands/kaga-retro.md"
   ],
   "agents": [
     "./agents/kaga-art-director.md",

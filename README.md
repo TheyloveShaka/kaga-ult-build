@@ -35,14 +35,23 @@ Phase 4   Business case         true cost, margin, the number to quote
 Phase 5   Launch                deploy checklist, ship, verify live, handoff
 ```
 
-## The six laws
+## Who leads
 
-1. **Delegation is binding.** A plan that assigns an agent to a phase means that agent gets spawned. Doing it inline collapses the cost/quality tradeoff and erases the independent review.
+Opus 5.5 orchestrates by default; cheaper agents do the volume. GPT-6 Astra leads only when explicitly asked, under hard cost guards in `kaga-budget`.
+
+## The seven laws
+
+1. **Delegation is binding.** A plan that assigns an agent to a phase means that agent gets spawned.
 2. **Zero defaults.** No system fonts, no stock Tailwind palette, no unstyled shadcn shipped as-is.
-3. **Plan, Act, Audit.** Separate passes, separate actors. The builder never signs off on its own work.
-4. **No em dashes.** Anywhere in the repo.
+3. **Plan, Act, Audit, with a human gate.** The builder never signs off on its own work, and an autonomous run stops for approval after planning.
+4. **No em dashes, no narrating code comments.** Anywhere, rendered copy included.
 5. **Images are the product.** Every slot resolved before launch, or it is a blocker.
-6. **Do not reinvent an installed skill.** Route to the specialist. Hand-rolling a worse version of something already installed is the most common way this pipeline wastes money.
+6. **Do not reinvent an installed skill.** Route to the specialist.
+7. **Look before you show.** Screenshot the build beside each reference move and fix mismatches before anyone sees it.
+
+## It learns
+
+`references/lessons.md` holds what past builds taught, mined from real build history, and is read before every build. Each build ends with a retro that appends new lessons to `~/.claude/kaga/lessons.md`, and `/kaga-retro` mines the full chat history (secrets redacted) for a deeper pass.
 
 ## It orchestrates, it does not duplicate
 
@@ -72,7 +81,7 @@ This plugin is a conductor. The depth lives in skills that already exist, and ev
 
 The skill carries a full inventory of every installed skill and when it applies, so nothing sits unused.
 
-What this plugin adds on top: the pipeline order, the crew table and the rule that it binds, the six laws, the reference-hunt gate, the image plan, and the costed quote. If a routed skill is not installed, the orchestrator says so by name and falls back to doing the work directly rather than silently skipping it.
+What this plugin adds on top: the pipeline order, the crew table and the rule that it binds, the seven laws, the lessons loop, the reference-hunt gate, the image plan, and the costed quote. If a routed skill is not installed, the orchestrator says so by name and falls back to doing the work directly rather than silently skipping it.
 
 ### Recommended companions
 
@@ -91,12 +100,13 @@ Then install at least `modern-web-design`, `gsap-scrolltrigger`, `motion-framer`
 | `/kaga-audit [scope]` | Just the three-pass audit |
 | `/kaga-launch-check [url]` | The 20-point pre-launch sweep |
 | `/kaga-quote [project]` | Just the business case and client quote |
+| `/kaga-retro [since]` | Mine build history for corrections and update the lessons |
 
 ## Skills
 
 | Skill | Owns |
 |---|---|
-| `kaga-ult-build` | The orchestrator and the five laws |
+| `kaga-ult-build` | The orchestrator, the seven laws, and the lessons loop |
 | `kaga-reference-hunt` | 10 references, the transferable move from each |
 | `kaga-art-direction` | Palette, typography, motion language, spacing |
 | `kaga-imagery` | Image inventory, sourcing, and the client ask |
@@ -110,9 +120,9 @@ Then install at least `modern-web-design`, `gsap-scrolltrigger`, `motion-framer`
 
 ## Agents
 
-`kaga-art-director` (opus), `kaga-ux-architect` (opus), `kaga-frontend-engineer` (sonnet), `kaga-motion-engineer` (sonnet), `kaga-backend-engineer` (sonnet), `kaga-content-seo` (sonnet), `kaga-security-auditor` (opus), `kaga-uat-agent` (sonnet), `kaga-integrator` (opus).
+`kaga-art-director` (opus), `kaga-ux-architect` (sonnet), `kaga-frontend-engineer` (sonnet), `kaga-motion-engineer` (sonnet), `kaga-backend-engineer` (sonnet), `kaga-content-seo` (sonnet), `kaga-security-auditor` (opus), `kaga-uat-agent` (sonnet), `kaga-integrator` (opus).
 
-Each starts cold, so the orchestrator passes it the art direction verbatim. Each has explicit boundaries on what it must not touch.
+Each starts cold, so the orchestrator passes it a stable prefix of laws and tokens, plus its own slice of the plan. Each has explicit boundaries on what it must not touch.
 
 ## Configure before first real quote
 

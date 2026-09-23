@@ -11,4 +11,4 @@ Start at Phase 0. Do not skip the reference hunt, and do not proceed past it unt
 
 Before you begin, state in one line which track you picked (A brand adherence, B cinematic net-new, or C feature/update) and why.
 
-Remember the five laws: delegation is binding, zero defaults, plan then act then audit, no em dashes, images are the product.
+Read `references/lessons.md` first. Opus 5.5 leads unless I say Astra leads. Remember the seven laws, especially Law 7: look before you show.

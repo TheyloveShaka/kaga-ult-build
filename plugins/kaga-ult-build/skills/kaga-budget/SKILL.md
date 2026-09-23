@@ -100,6 +100,19 @@ A failed or unsatisfactory paid call is reported, not retried automatically. Ret
 
 **Anything that can run on the Pro plan should.** Pro capacity is already bought. The API budget exists for what Pro cannot do well, which is Fable-grade visual judgment. Spending API credits on work Sonnet handles is pure waste.
 
+## Astra as lead, only on Kaga's explicit instruction
+
+The default lead is Opus 5.5 on the Pro plan, at no API cost. Astra leads only when Kaga says so in so many words. A request for an Astra review is a single-shot consultant call under Rule 1, not a lead change.
+
+Astra as lead is the most expensive configuration this pipeline has: an orchestrator is a loop, it re-reads its own growing context every turn, and Astra's price doubles past 272K input. When Kaga asks for it anyway, run it with these guards:
+
+- **Opt-in per build, with a ceiling.** State the estimate and a per-build ceiling before starting (default $3.00, or whatever Kaga names), and add it to the ledger.
+- **Its own session.** Launch the OpenRouter profile (`kastra`) with `openai/gpt-6-astra` as the main model and the worker aliases mapped to cheap models: `sonnet` to `openai/gpt-5.6-luna`, `haiku` to `deepseek/deepseek-v4-flash`. Preflight each mapping with a one-token call before the build depends on it.
+- **The lead never reads bulk.** No screenshots, no large files, no repo sweeps in the Astra session. Workers read and return short summaries; Astra plans and judges.
+- **Context stays under 150K.** At each phase boundary, write `docs/PROGRESS.md` and start a fresh session instead of letting context grow toward the cliff.
+- **Check spend at every phase boundary** against the ceiling. At the ceiling, stop, report, and hand back to Opus 5.5 unless Kaga raises it.
+- **Hand back when the judgment work is done.** Astra leads the phases Kaga named; everything after returns to the default lead.
+
 ## Preflight, every build
 
 Before Phase 2 dispatch, state in one block:
