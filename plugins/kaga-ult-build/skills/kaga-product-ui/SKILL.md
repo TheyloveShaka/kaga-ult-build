@@ -90,7 +90,7 @@ Principles:
 
 - **The object reflects the state.** In a checkout, the card itself glows while processing and turns green on success; the form steps back so attention lands on the thing that matters. Feedback lives on the object, not in a toast in the corner.
 - **Input drives the object.** Focusing the security code field flips the card to its back. The UI shows the user where the thing they are typing lives.
-- **Say what is happening.** Replace a generic spinner with an indicator that names the state: searching, uploading, verifying, processing payment. The open-source `thinking-orbs` package (MIT, v0.3.2 at time of writing, plain 2D canvas, respects reduced motion) is a good fit for AI and long-running states. Verify its current version and licence before adding it to a client build.
+- **Say what is happening.** Replace a generic spinner with an indicator that names the state: searching, uploading, verifying, processing payment. The open-source `thinking-orbs` package (MIT, v0.3.2 at time of writing, plain 2D canvas, respects reduced motion) is a good fit for AI and long-running states. Verify its current version and licence before adding it to a client build. For toasts, `goey-toast` (MIT) morphs one element from loading to success or error with promise tracking. Vetted libraries, including Kaga's preferred Rare UI, are listed in `kaga-ult-build/references/sources.md`.
 - **Never lose work on failure.** A failed payment keeps the form filled. A failed upload keeps the file listed with a retry.
 - **Warn inline, at the field.** A security or validation warning appears beside the field that caused it, not at the top of the form.
 

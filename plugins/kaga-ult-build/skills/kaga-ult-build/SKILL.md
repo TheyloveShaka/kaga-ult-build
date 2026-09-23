@@ -132,4 +132,5 @@ Read only when the phase needs them:
 - `references/lessons.md`: what past builds taught. **Always read.**
 - `references/routing.md`: which skill and agent to use for every phase and task
 - `references/cost-and-models.md`: paid routing, prompt shape and caching, effort, output length
+- `references/sources.md`: vetted component libraries and inspiration sources, and how to vet a new one
 - `references/rejected.md`: ideas deliberately not adopted, and why

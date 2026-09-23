@@ -34,6 +34,7 @@ Use `WebSearch` and `WebFetch`. Productive sources:
 - Awwwards, FWA, Godly, Land-book, Httpster, Minimal Gallery, One Page Love
 - Dribbble and Behance for direction, but never as a build reference, they are static
 - The actual competitors, found by searching the sector plus the market
+- Inspora and Best Designs on X for live interaction and fresh work, Scrolltide for scroll interactions (see `kaga-ult-build/references/sources.md`)
 
 For each candidate, open it. A reference you have not looked at is a guess.
 

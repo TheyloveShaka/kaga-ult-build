@@ -45,6 +45,7 @@ Mined from Kaga's build history across UWA, MyLand.ai, Kamwe Forex, Frozen Baske
 - **Warm reload and back-navigation broke animation state** (Frozen Basket: the nav turned white and sections vanished until a hard reload). Test reload, back and forward, and route change on every GSAP build.
 - **The collapsed mobile nav button failed** (Frozen Basket). Always tap it at a real narrow width.
 - **Photos marked ASK CLIENT arrive late** on almost every job. Raise the ask in week one.
+- **The install command in a reel can point to someone else's package.** A demo site said `npm install gooey-toast`; its own repo published under another name, so the command installed an unrelated two-star package. Vet every reel-sourced package per `references/sources.md` before it enters a build.
 
 ## Tooling facts (re-verify prices before relying on them)
 
