@@ -37,4 +37,6 @@ For Phase 0 hunting. These show live interaction, which static galleries miss.
 |---|---|
 | **Inspora** (inspora.design) | Motion, product, branding, and 3D, sorted by category, mostly video, updated hourly |
 | **Best Designs on X** (bestdesignsonx.com) | Curated design Twitter: logos, UI, and branding without the doomscroll |
+| **Mobbin** (mobbin.com) | Real flows and components from top apps and sites, searchable by pattern. Paid, and a sponsor of the videos that recommended it, but a well-established library |
+| **Laws of UX** (lawsofux.com) | The psychology behind interface decisions; summarised in `kaga-conversion` |
 | **Scrolltide** (scrolltide.co) | A library of scroll interactions, each with a prompt to build it. Treat a prompt as a starting technique, not a finished design: it still goes through the shot list, art direction, and the reference-fidelity check |

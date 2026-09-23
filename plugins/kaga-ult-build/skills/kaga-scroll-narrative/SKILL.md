@@ -53,7 +53,7 @@ Every beat states: the visual, where the media comes from, the copy intent, the 
 
 **Earn the pin.** Pinning a section steals the viewer's scroll. Only pin when something is genuinely happening in that held frame.
 
-**Leave the exits open.** A narrative site still needs a nav, a way to skip to the CTA, and a route out. Immersive is not a reason to trap someone.
+**Leave the exits open, and use scrolljacking sparingly.** A narrative site still needs a nav, a way to skip to the CTA, and a route out. Immersive is not a reason to trap someone.
 
 **Reduced motion gets a designed static version**, not an empty page. The narrative collapses to a well-composed stack of the key frames with the copy intact. Specify it beat by beat, and verify it by emulating the setting.
 
@@ -79,7 +79,7 @@ A busy video behind live text is the most common way this genre fails. The compo
 Fix it in the design, not with a blanket dark overlay slapped over everything, which flattens the media you just paid to generate:
 
 - Generate or grade the media with a quiet zone where the text sits. Solve it upstream and you need no scrim at all.
-- If a scrim is needed, use a directional gradient behind the text only, not a flat wash over the frame.
+- If a scrim is needed, use a directional gradient behind the text only, not a flat wash over the frame. For a more modern finish, add a progressive blur on top of the gradient.
 - Text shadow that is felt rather than seen, and never a hard drop shadow.
 - Reduce the type size rather than fighting the background. Oversized text over motion is harder to read, not easier.
 - Check contrast against the *brightest frame* of the video, not a screenshot of the darkest one.

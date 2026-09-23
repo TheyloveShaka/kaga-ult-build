@@ -40,6 +40,10 @@ Having the right colours is not the same as using them in the right proportion. 
 
 Not a law, a starting discipline. Break it deliberately and say why. The common failure is spending the accent everywhere, after which nothing stands out and the CTA competes with decoration. See `kaga-conversion`.
 
+### Premium colour signals
+
+Premium palettes usually lean on near-black, near-white, and restrained neutrals so the imagery carries the colour. Loud yellows and reds read as sale, fast food, and impulse buying unless that is the intent. This is a default for premium work, not a law: bright colour can be premium when it is deliberate and used sparingly. For a premium wordmark, a clean, well-set name with no pictogram is the convention in fashion and lifestyle; other sectors, such as watches and cars, differ, so check the sector's references.
+
 ### Rules
 
 - Every value gets a token name. No hex in components.
@@ -127,6 +131,19 @@ Write it down once, then every agent follows it:
 - **What moves**: entrances, state changes, scroll narrative. **What does not**: body copy, form fields under input, anything that would delay a user's action.
 - **Stagger**: the interval and the direction.
 - **Reduced motion**: the fallback for every single one of the above. Not "animations off", a designed static state.
+
+## Craft numbers
+
+The small, specific settings that separate a professional finish from a default one. Starting points, not laws; deviate on purpose.
+
+- **Large type**: tracking about -2% to -3%, line height 110% to 120%. Untightened display type is the quickest tell of a default build.
+- **Size count**: about six font sizes on a landing page. Dashboards keep body and labels at 24px or below for density; hero stat numerals are the one exception.
+- **Spacing on a 4px base**, with related items grouped tighter than unrelated ones (for example 8 to 16px inside a group, 32px or more between groups). The spacing itself carries the hierarchy.
+- **Shadows**: low opacity, large blur. Cards need very little; popovers and modals need more. If the shadow is the first thing you notice, it is wrong.
+- **Dark mode depth** comes from lighter surfaces, not shadows: the more elevated, the lighter. Borders drop in contrast, chips lose saturation, and deep purples, reds, or greens are all valid darks, not only navy and grey.
+- **Icons sized to the line height** of the text beside them, 24px icon to 24px line height. Oversized icons are the common mistake.
+- **Button padding** about twice as wide as tall, with default, hover, pressed, disabled, and loading states.
+- **One primary colour**, with tints for backgrounds and shades for text. Semantic colours carry meaning (blue trust, red danger, amber warning, green success) and are never decoration.
 
 ## Spacing, radius, elevation
 

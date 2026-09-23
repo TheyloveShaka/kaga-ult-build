@@ -31,6 +31,36 @@ What actually governs attention is hierarchy. On every section, rank the element
 
 If three things on a section are all shouting, none of them is heard. Deliberate de-emphasis is the harder half of this and the part most often skipped.
 
+## Why premium feels premium
+
+- **The halo effect.** Visitors judge a site in about 50 milliseconds, and that judgment colours everything after it. Name the single feeling the hero must create in that first glance (calm, confidence, excitement) and build the hero around it. This is why the hero comes first in every build.
+- **Cognitive fluency.** What is easy to process reads as trustworthy and high quality. Every removed element, clearer grouping, and simpler nav raises perceived quality, not just usability.
+- **The peak-end rule.** People remember the most intense moment and the ending, not the average. Design the peaks (a satisfying micro-interaction, a hero moment) and the ending: the last section, the success state, the confirmation.
+- **Start from intent, not visuals.** Decide what the visitor came to do and design that first (a search bar before a hero image on a booking site). Expand the interface only as the intent expands.
+
+## Borrowed luxury is a trap
+
+Luxury houses show almost nothing: no benefits, no explanation, a name and a photograph. That works because demand already exists and millions of people already want the product. An unknown brand copying that minimalism gets the emptiness without the demand.
+
+A premium look for a small or new business comes from the same restraint in the visuals, plus the evidence a stranger needs to trust them: who they are, what they do and for whom, what they specialise in, how they work, real photos of the real people, social proof, and prices or a range. Where choosing is hard, guide it: a short quiz or selector that recommends the right option converts better than a catalogue.
+
+## UX laws that change decisions
+
+From lawsofux.com. Only the ones that should change what gets built:
+
+| Law | Apply it as |
+|---|---|
+| Jakob's law | Keep conventions (nav at top, top-to-bottom flow, obvious CTAs); be distinctive inside them, not against them |
+| Hick's law | Fewer choices per step; split complex tasks into steps |
+| Fitts's law | Primary targets large and near the thumb or cursor path |
+| Von Restorff effect | The primary action looks unlike everything around it |
+| Serial position | The most important nav items go first and last |
+| Doherty threshold | Every interaction answers within 400ms: optimistic updates, skeletons, instant feedback |
+| Zeigarnik effect | Show progress on multi-step forms and onboarding |
+| Postel's law | Accept input loosely (phone numbers with spaces or +256), normalise it server side |
+| Tesler's law | Complexity moves into the system, not onto the user |
+| Aesthetic-usability effect | Beauty buys tolerance but hides usability problems, so test with tasks, not opinions |
+
 ## CTAs
 
 The whole point of most sections is that somebody clicks. Design accordingly.

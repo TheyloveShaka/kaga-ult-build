@@ -7,7 +7,7 @@
   },
   "metadata": {
     "description": "Kaga's master build system for premium client websites. A nine-agent crew run through Plan, Act, Audit, with mandatory reference research, researched art direction, a resolved image plan, baked-in security review, and a costed client quote.",
-    "version": "2.1.0",
+    "version": "2.2.0",
     "homepage": "https://github.com/TheyloveShaka/kaga-ult-build",
     "repository": "https://github.com/TheyloveShaka/kaga-ult-build"
   },
@@ -15,7 +15,7 @@
     {
       "name": "kaga-ult-build",
       "source": "./plugins/kaga-ult-build",
-      "version": "2.1.0",
+      "version": "2.2.0",
       "description": "Kaga's master build system for premium client websites. Opus 5.5 leads (GPT-6 Astra only on explicit instruction) a nine-agent crew through Plan, Act, Audit with a human gate. Routes every phase to installed specialist skills, enforces reference fidelity, researched art direction, a resolved image plan, zero defaults, baked-in security, a costed quote, and learns from past builds through a lessons file and a history-mining retro."
     }
   ]

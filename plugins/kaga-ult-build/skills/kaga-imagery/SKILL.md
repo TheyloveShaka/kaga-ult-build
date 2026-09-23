@@ -51,6 +51,10 @@ For each slot, write the search intent from the art direction before searching: 
 
 **Market fit is not optional.** For a Ugandan or East African client, source imagery that reflects the actual audience and setting. Generic Western stock in a Kampala business's hero is immediately visible to the people it is meant to convert, and clients notice it before they notice anything you did well. `Nappy` and targeted searches on the free libraries handle most of this; where they do not, that slot becomes an `ASK CLIENT`.
 
+### Curation
+
+Judge the content of each photo, not just its quality: reject distracting backgrounds, unretouched skin where the rest of the set is retouched, over-posed subjects, and anything that pulls the eye away from the point of the image. Image grids align to the layout; mixed sizes only where the design intends them. A single misaligned row makes the whole section look cheaper.
+
 ### Cohesion
 
 Mixed-source imagery only looks commissioned if it is graded as one set. Pick one treatment in `ART-DIRECTION.md` and apply it to every photo: a consistent colour grade, a consistent contrast curve, an optional shared grain or duotone. State the treatment, then apply it, and check the set side by side rather than image by image.

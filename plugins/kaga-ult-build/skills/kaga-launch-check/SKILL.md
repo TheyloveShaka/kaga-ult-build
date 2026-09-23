@@ -141,6 +141,13 @@ What separates a site that launches from a site that survives its first busy wee
 - **A backup exists and a restore has been tested.** An untested backup is a hope, not a backup.
 - **Concurrent use tested** at a realistic level for anything with accounts, bookings, or payments.
 
+## Block J: Real content, real behaviour
+
+- **Worst-case content, not perfect content.** Test the longest name, the biggest number, a missing image, an empty list. Truncate gracefully; icons over bright images get a backing so they keep contrast.
+- **Feedback within 400ms** on every click, submit, and toggle.
+- **The footer is reachable.** Prefer "load more" to infinite scroll, which traps the footer.
+- **Scroll narrative is escapable.** Nav stays usable and the visitor can skip past a pinned sequence. Scrolljacking is used sparingly, if at all.
+
 ## Beyond the list
 
 The twenty above are the floor, not the bar. A build going out at premium price also clears:
