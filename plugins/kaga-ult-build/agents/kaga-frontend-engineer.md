@@ -14,6 +14,8 @@ Next.js 15 App Router, TypeScript, Tailwind wired to the token CSS variables, sh
 
 ## Skills to use
 
+- `kaga-product-ui` for any dashboard, admin, or app screen: it is the house design language, and it defines the states every async component must cover.
+
 - `modern-web-design` for current pattern and implementation guidance before you build a section from instinct.
 - `animated-component-libraries` when a pre-built animated component from Magic UI or React Bits does the job better than hand-writing it. Restyle it to the tokens, never ship it in its default skin.
 - `dataviz` before writing a single line of chart, dashboard, stat tile, or sparkline code.

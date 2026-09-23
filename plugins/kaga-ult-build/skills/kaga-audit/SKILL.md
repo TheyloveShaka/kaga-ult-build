@@ -60,6 +60,26 @@ Report severity as Critical, High, Medium, Low, with the file and line, the conc
 
 ---
 
+### Commonly missed
+
+The items above are the classics. These are the ones generated builds skip most often, and several of them are the difference between a bug and a loss of money:
+
+- **Prices set server side.** The client sends a product id and quantity, never a price. A price in the request body is a discount anyone can apply.
+- **Payment webhooks verified.** Check the provider's signature before marking anything paid. An unverified webhook endpoint lets anyone mark an order paid.
+- **Idempotent payments and submissions.** A double click or a retried request must not charge twice or create two orders. Use idempotency keys.
+- **Password reset hygiene.** Reset links expire and work once, resets are rate limited, and changing a password ends every other session.
+- **No user enumeration.** Login and reset responses read the same whether or not the account exists.
+- **Account lockout or backoff** after repeated failed logins.
+- **Request size limits** on every body parser and upload.
+- **Upload types allowlisted**, checked by content, never by extension alone.
+- **AI features capped and guarded.** Per-user usage limits and a spend cap on any model API, and user input treated as data, never as instructions, so it cannot redirect the model (prompt injection). See `claude-api` for model-side guidance.
+- **Spend caps on every paid API** the site calls, set in the provider's dashboard, so an abuse spike has a ceiling.
+- **Debug mode off and production settings checked**: no stack traces, no verbose errors, no dev-only routes.
+- **Default admin routes removed or protected**, directory listing disabled.
+- **Cookies flagged** `Secure`, `HttpOnly`, and `SameSite`; CSRF tokens on state-changing forms where auth is cookie based; HSTS set.
+- **Database permissions least-privilege**: the app's role can do only what the app needs.
+- **Security events logged**: logins, failures, resets, permission changes, with no secrets or personal data in the logs.
+
 ## Pass 2: Quality and UAT
 
 Owner: `kaga-uat-agent`. Verified in a real browser, not asserted.

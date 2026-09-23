@@ -102,6 +102,7 @@ Then install at least `modern-web-design`, `gsap-scrolltrigger`, `motion-framer`
 | `kaga-imagery` | Image inventory, sourcing, and the client ask |
 | `kaga-audit` | The three audit passes |
 | `kaga-budget` | Hard cost control: single-shot rule for paid models, per-call caps, ledger, stop-at-budget |
+| `kaga-product-ui` | House dashboard language and state-complete components for app and admin screens |
 | `kaga-conversion` | Whether it works, not just whether it looks good. Clarity, scannability, motivation, hierarchy, CTAs, friction |
 | `kaga-scroll-narrative` | Scroll as a story: descent, assembly, exploded, transformation, journey. Shot list, generated media, cost discipline |
 | `kaga-launch-check` | The 20-point pre-launch sweep, verified in a browser |

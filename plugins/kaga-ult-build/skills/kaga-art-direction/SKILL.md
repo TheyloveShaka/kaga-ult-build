@@ -130,6 +130,9 @@ Write it down once, then every agent follows it:
 
 ## Spacing, radius, elevation
 
+**Content layout before container layout.** Let whitespace form groups first, then add a surface only where something deserves emphasis. Boxing every group is the most common reason generated UI looks cheap. The full rule and its test live in `kaga-product-ui`.
+
+
 - Spacing scale on a consistent base, usually 4px, stated explicitly.
 - Radius scale with a rule for which elements get which. Uniform radius everywhere is a default, and defaults are banned.
 - Elevation as a designed shadow ramp, tinted with the palette's hue, never `box-shadow: 0 1px 3px rgba(0,0,0,.1)` copied four times.

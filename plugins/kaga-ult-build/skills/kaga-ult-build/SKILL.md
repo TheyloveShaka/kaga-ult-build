@@ -52,6 +52,7 @@ State which track you picked and why in one line before proceeding.
 | 1d Architecture | `engineering:system-design`, `engineering:architecture` (ADR for any real tech choice), `design:user-research`, `design:research-synthesis` | `kaga-ux-architect` |
 | 1d Shot list + image plan | `kaga-scroll-narrative`, `kaga-imagery` | |
 | 2 Scroll narrative | `kaga-scroll-narrative`, `gsap-scrolltrigger` | `kaga-motion-engineer` |
+| 2 Product UI, dashboards, app screens | `kaga-product-ui` (house dashboard language, state-complete components) | `kaga-frontend-engineer` |
 | 2 Frontend | `modern-web-design`, `animated-component-libraries` | `kaga-frontend-engineer`, `animated-component-libraries:animated-component-libraries-specialist` |
 | 2 Motion | pick per job, see below | see below |
 | 2 Backend | `engineering:system-design`, `engineering:architecture` | `kaga-backend-engineer` |

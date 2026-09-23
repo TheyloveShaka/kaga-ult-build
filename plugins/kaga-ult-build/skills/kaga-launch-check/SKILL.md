@@ -91,6 +91,28 @@ A recognisable set of defects appears in generated builds regardless of the mode
 - **Text baked into an image** where it should be DOM. Unselectable, invisible to search, unreadable to a screen reader. See `kaga-scroll-narrative`.
 - **The mobile stack default.** Anything laid out in a row on desktop stacking vertically on mobile whether or not that is right. A three-item stat row usually wants to stay one row at a smaller size, not become three.
 
+## Block G: Legal and consent
+
+- **Privacy policy page**, real and specific to what the site actually collects. Uganda's Data Protection and Privacy Act 2019 applies to personal data collected from Ugandans, so a Kampala client collecting names, phones, or emails needs one. Flag it to the client as their legal responsibility; do not present a template as legal advice.
+- **Terms page** where the site sells, books, or takes accounts.
+- **Cookie consent** where non-essential cookies or analytics run, defaulting to the privacy-preserving choice, and simple rather than a dark-pattern wall.
+- **Spam protection** on every public form: a honeypot or a lightweight challenge, plus server-side rate limiting.
+- **Form validation** client side for the user's benefit and server side as the actual control.
+
+## Block H: Operational readiness
+
+What separates a site that launches from a site that survives its first busy week:
+
+- **Duplicate submissions prevented**: disable on submit, plus idempotency server side.
+- **Failed requests and timeouts handled** with a designed message and a retry, never a frozen button.
+- **Large result sets paginated**, queries on hot paths indexed.
+- **Repeat requests cached** where the data allows it.
+- **Upload size limited** and files compressed.
+- **Uptime monitoring** on the live URL, alerting somewhere Kaga actually looks.
+- **Error logging** in production, so the first report of a bug is not a client phone call.
+- **A backup exists and a restore has been tested.** An untested backup is a hope, not a backup.
+- **Concurrent use tested** at a realistic level for anything with accounts, bookings, or payments.
+
 ## Beyond the list
 
 The twenty above are the floor, not the bar. A build going out at premium price also clears:
@@ -105,6 +127,26 @@ The twenty above are the floor, not the bar. A build going out at premium price 
 - **Focus visible on every interactive element**, and a skip link.
 - **`prefers-reduced-motion` honoured**, verified by emulating it.
 - **Forms actually deliver.** Submit a real test entry and confirm it arrives where the client will look for it. A contact form that posts to nowhere is the single worst launch bug on this list, and it is silent.
+
+## The feature menu: use judgment, not a checklist
+
+Lists of "20 features to add to your site" circulate constantly. They are menus, not requirements. Adding everything on one makes a site heavier and busier, which is the opposite of premium. Judge each against the site:
+
+| Feature | Verdict |
+|---|---|
+| Floating contact button | **Yes for local businesses.** In Kampala this means a WhatsApp button; it is often the main conversion path |
+| Skip to content, password visibility toggle | **Always.** Accessibility basics |
+| Form success and error states, confirmation before destructive actions | **Always.** Already required by Blocks D and the conversion skill |
+| Hover states, sticky header | **Usually.** Part of normal craft |
+| Site search, expandable FAQ | When there is enough content to need them |
+| Last updated date | On docs, policies, and pricing |
+| UTM tracking | When the client runs campaigns and will actually read the numbers |
+| Dark mode toggle | When the audience uses the site at night or for long sessions; otherwise follow the system setting and skip the toggle |
+| Back to top, scroll progress bar | Only on genuinely long-form pages |
+| Copy button | Only where people copy things: codes, addresses, account numbers |
+| Print stylesheet | Rarely. Invoices, tickets, recipes |
+
+If a feature does not serve this site's visitor, leaving it out is the premium decision.
 
 ## Reporting
 
