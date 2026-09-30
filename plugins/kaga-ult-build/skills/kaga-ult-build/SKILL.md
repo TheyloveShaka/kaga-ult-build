@@ -25,16 +25,16 @@ Default crew, binding under Law 1:
 | Phase | Agent | Model | Deliverable |
 |---|---|---|---|
 | P1 | kaga-art-director | opus | `ART-DIRECTION.md` + tokens |
-| P2 | kaga-ux-architect | sonnet | route map, section specs, acceptance criteria |
-| P3 | kaga-frontend-engineer | sonnet | components, pages |
-| P4 | kaga-motion-engineer | sonnet | motion layer, delegated to specialists |
-| P5 | kaga-backend-engineer | sonnet | data, auth, API |
-| P6 | kaga-content-seo | sonnet | copy, metadata, JSON-LD |
+| P2 | kaga-ux-architect | sonnet 5.5 (`claude-sonnet-5-5`) | route map, section specs, acceptance criteria |
+| P3 | kaga-frontend-engineer | sonnet 5.5 (`claude-sonnet-5-5`) | components, pages |
+| P4 | kaga-motion-engineer | sonnet 5.5 (`claude-sonnet-5-5`) | motion layer, delegated to specialists |
+| P5 | kaga-backend-engineer | sonnet 5.5 (`claude-sonnet-5-5`) | data, auth, API |
+| P6 | kaga-content-seo | sonnet 5.5 (`claude-sonnet-5-5`) | copy, metadata, JSON-LD |
 | P7 | kaga-security-auditor | opus | `SECURITY-AUDIT.md` |
-| P8 | kaga-uat-agent | sonnet | `UAT-REPORT.md` |
+| P8 | kaga-uat-agent | sonnet 5.5 (`claude-sonnet-5-5`) | `UAT-REPORT.md` |
 | P9 | kaga-integrator | opus | one coherent build |
 
-Adjust rows to the job. Never delete the audit rows.
+Worker agents pin the full model id, not the `sonnet` alias, because the alias can resolve to an older Sonnet. Adjust rows to the job. Never delete the audit rows.
 
 ## The seven laws
 

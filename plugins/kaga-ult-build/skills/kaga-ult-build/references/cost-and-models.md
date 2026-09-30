@@ -4,7 +4,7 @@ Reference for `kaga-ult-build`. Read only when the phase needs it.
 
 ### How paid routing actually works, and what it cannot do
 
-A correction worth having before anyone tries to configure this. Agent frontmatter `model:` accepts `opus`, `sonnet`, `haiku`, or `fable` only. You **cannot** put an OpenRouter id like `openai/gpt-5.6-luna` in an agent file and have that agent route to OpenRouter. Routing to OpenRouter is a **session-level** decision made by environment variables before Claude Code starts, so one session equals one provider and one model family.
+A correction worth having before anyone tries to configure this. Agent frontmatter `model:` accepts an alias (`opus`, `sonnet`, `haiku`, `fable`), `inherit`, or a full Anthropic model id such as `claude-sonnet-5-5`, which the worker agents use so the alias cannot drift to an older Sonnet. You **cannot** put an OpenRouter id like `openai/gpt-5.6-luna` in an agent file and have that agent route to OpenRouter. Routing to OpenRouter is a **session-level** decision made by environment variables before Claude Code starts, so one session equals one provider and one model family.
 
 What that means in practice:
 

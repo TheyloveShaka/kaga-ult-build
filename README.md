@@ -120,7 +120,7 @@ Then install at least `modern-web-design`, `gsap-scrolltrigger`, `motion-framer`
 
 ## Agents
 
-`kaga-art-director` (opus), `kaga-ux-architect` (sonnet), `kaga-frontend-engineer` (sonnet), `kaga-motion-engineer` (sonnet), `kaga-backend-engineer` (sonnet), `kaga-content-seo` (sonnet), `kaga-security-auditor` (opus), `kaga-uat-agent` (sonnet), `kaga-integrator` (opus).
+`kaga-art-director` (opus), `kaga-ux-architect` (sonnet 5.5), `kaga-frontend-engineer` (sonnet 5.5), `kaga-motion-engineer` (sonnet 5.5), `kaga-backend-engineer` (sonnet 5.5), `kaga-content-seo` (sonnet 5.5), `kaga-security-auditor` (opus), `kaga-uat-agent` (sonnet 5.5), `kaga-integrator` (opus).
 
 Each starts cold, so the orchestrator passes it a stable prefix of laws and tokens, plus its own slice of the plan. Each has explicit boundaries on what it must not touch.
 
