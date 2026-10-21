@@ -48,6 +48,34 @@ Put the expensive model where judgement compounds, and cheap models on the mecha
 
 The crew table in 1d is where this gets recorded, and Law 1 makes it binding. Cross-validate design decisions with a *different* model rather than the one that made them, because a model reviewing its own judgement mostly agrees with itself.
 
+### The Claude tiers (verified 2026-10-21)
+
+| Model | ID | API price per MTok, in / out | Use for |
+|---|---|---|---|
+| Fable 5.1 | `claude-fable-5-1` | $10 / $50 | Single-shot hardest judgement, under `kaga-budget` |
+| Opus 5.5 | `claude-opus-5-5` | $4 / $20 | The lead: plans, gates, sign-off |
+| Sonnet 5.5 | `claude-sonnet-5-5` | $2 / $10 | Builders and auditors, pinned in the agent files |
+| Haiku 5.5 | `claude-haiku-5-5` | from $0.10 / $0.50 | Read-only swarm: maps, greps, docs, sweeps |
+
+All four have a 1M context window. On Kaga's Pro plan they draw on usage limits rather than dollars, but the price ratios still show how fast each one burns the allowance. On the Anthropic API the `sonnet` and `haiku` aliases now resolve to the 5.5 models; the agent files pin full IDs anyway, so an alias change can never move a build.
+
+Switches worth knowing, all documented in Claude Code's model configuration:
+
+- `CLAUDE_CODE_SUBAGENT_MODEL=haiku` sends any subagent without its own `model:` (Explore, general-purpose) to Haiku 5.5. The Kaga agents keep their pinned models because frontmatter wins.
+- `claude --model opusplan` runs Opus 5.5 in plan mode and Sonnet 5.5 for execution. Lean mode, only when Kaga asks for it.
+- `fallbackModel` in settings, for example `["claude-sonnet-5-5", "claude-haiku-5-5"]`, switches model for one turn when the primary is overloaded or unavailable. Rate limits and billing errors do not trigger it, so it is not a guarantee. It is the cheap fix for lesson 9, a model unreachable mid-build.
+
+### Routing without a thinker
+
+Most forks in a build need no model: which file to read, which tool to run, whether to retry or stop. Settle them in code or in a fixed rule, and send only the forks that genuinely split to a model. A social post called this "JEV engineering"; the principle is worth taking, the product attached to it is not (see `rejected.md`).
+
+- **A fixed routing table.** The crew table, `routing.md`, and the tier table above decide who does what before the build starts. Nobody asks a model which model to use.
+- **The retry budget lives in the rule.** One retry with the error output attached. The same failure twice goes to the lead, then to Kaga. No open-ended loops.
+- **Scripts are the sensors.** A check that can be a script is a script: the `kaga-launch-check` audits, `scripts/qa` screenshot and probe scripts, the history miner. The model reads the evidence; it does not re-derive it. Done is decided by the evidence, not by the builder's report.
+- **Dual encoding for the laws.** State the rule in words for the model, then add a mechanical gate where one is cheap: the rendered em-dash scan and computed-font audit, contract checks in each brief, acceptance criteria in the UX spec.
+- **Every delegation is a bounded contract:** deliverable (exact files), constraints, non-goals, and the acceptance check. Without one, a model quietly solves an easier task and reports success.
+- **A map, not an encyclopedia.** Agents get `docs/PROGRESS.md`, the token file, and a pointer to the one file they need, never a dump of every doc.
+
 ### Prompt shape and caching
 
 **Prompt shape matters more than prompt content here.** Build every agent prompt in two parts, in this order:

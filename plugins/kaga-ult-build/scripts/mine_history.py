@@ -11,7 +11,11 @@ CORRECTION = re.compile(
     r"missing|forgot|cheap|expensive|budget|tokens?)\b",
     re.I,
 )
-NOISE_PREFIX = ("<command-", "<local-command", "Caveat:", "[Request interrupted", "<task-notification", "<bash-")
+NOISE_PREFIX = (
+    "<command-", "<local-command", "Caveat:", "[Request interrupted", "<task-notification", "<bash-",
+    "Another Claude session sent a message", "Base directory for this skill", "This session is being continued",
+    "[Usage limit", "[Earlier usage-limit", "The dev server failed", "[Image",
+)
 REMINDER = re.compile(r"<system-reminder>.*?</system-reminder>", re.S)
 SECRET = re.compile(
     r"(sk-(?:proj-|ant-)?[A-Za-z0-9_\-]{16,}|re_[A-Za-z0-9_]{16,}|AIza[0-9A-Za-z_\-]{30,}|xai-[A-Za-z0-9]{20,}|"

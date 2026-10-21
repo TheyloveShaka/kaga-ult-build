@@ -18,6 +18,10 @@ The house method. Every premium build runs through it, small ones included.
 - **Opus 5.5 (`claude-opus-5-5`) leads by default.** The main session orchestrates: it plans, judges, and routes. If the session is on another model, say so in one line rather than proceeding as if it were Opus.
 - **Astra leads only when Kaga explicitly says so** ("Astra leads", "use Astra as the orchestrator"). Asking Astra for a review is a consultant call, not a lead change. Astra-lead mode is the most expensive configuration there is; its rules live in `kaga-budget` and apply in full.
 - **Cheaper agents do the volume.** The lead never builds components, reads large files, or runs sweeps itself. It delegates, then judges what comes back.
+- **Three tiers, chosen by the task.** Opus 5.5 judges, Sonnet 5.5 builds, Haiku 5.5 (`claude-haiku-5-5`, about a twentieth of Sonnet's price) swarms: repo maps, greps, docs lookups, link and asset sweeps, contact sheets, history mining. Haiku never makes a design call or writes code that ships. Spawn read-only agents such as Explore with `model: "haiku"`.
+- **Opus steps in at three moments:** before a plan locks, when the same failure happens twice, and before anything is called done. In between, the crew works and the lead reads summaries.
+- **Lean mode only when Kaga asks:** `claude --model opusplan` runs Opus 5.5 in plan mode and Sonnet 5.5 for execution, saving Opus usage on long builds. Opus as lead stays the default.
+- **Decide in code what needs no thinker.** Which file, which tool, retry or stop: fixed rules and scripts settle these, not model calls. See "Routing without a thinker" in `references/cost-and-models.md`.
 - **Paid consultants are single-shot.** Fable or Astra review something once, with a complete prompt, when Kaga asks or the approved plan names them. Always governed by `kaga-budget`.
 
 Default crew, binding under Law 1:
@@ -33,6 +37,7 @@ Default crew, binding under Law 1:
 | P7 | kaga-security-auditor | opus | `SECURITY-AUDIT.md` |
 | P8 | kaga-uat-agent | sonnet 5.5 (`claude-sonnet-5-5`) | `UAT-REPORT.md` |
 | P9 | kaga-integrator | opus | one coherent build |
+| Sweeps | Explore, read-only | haiku 5.5 (`claude-haiku-5-5`) | repo maps, greps, link and asset sweeps, contact sheets |
 
 Worker agents pin the full model id, not the `sonnet` alias, because the alias can resolve to an older Sonnet. Adjust rows to the job. Never delete the audit rows.
 

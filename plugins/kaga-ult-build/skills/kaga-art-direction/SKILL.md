@@ -114,7 +114,7 @@ Match the face to the audience, not to a Dribbble shot. For a Ugandan or East Af
 
 A model shown a reference image will guess the typeface, and it guesses wrong. The result is a build that looks close but not right, and the reason is invisible until someone names it.
 
-So identify the face explicitly, then pass the name to whoever builds. To match a face from a reference: compare against a catalogue of popular faces visually, or use a font identification service, then confirm by setting the same string in the same weight and comparing letterforms side by side. Look at `a`, `g`, `R`, and the numerals, which differ most between similar faces.
+So identify the face explicitly, then pass the name to whoever builds. To match a face from a reference: compare against a catalogue of popular faces visually, or use a font identification service (for a logo, fontinlogo.com lists the faces behind well-known marks), then confirm by setting the same string in the same weight and comparing letterforms side by side. Look at `a`, `g`, `R`, and the numerals, which differ most between similar faces.
 
 Then in every downstream prompt and spec: state the family name and where it loads from. "Use Instrument Serif, imported from Google Fonts, weight 400" is a specification. "Match the font in the reference" is a guess with extra steps.
 

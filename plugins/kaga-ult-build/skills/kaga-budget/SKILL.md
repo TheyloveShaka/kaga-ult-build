@@ -115,6 +115,8 @@ Astra as lead is the most expensive configuration this pipeline has: an orchestr
 
 ## Preflight, every build
 
+Check the OpenRouter balance before the first paid call of a session (`GET https://openrouter.ai/api/v1/credits`, key read from `.env` at call time). Kaga asks for it first every time.
+
 Before Phase 2 dispatch, state in one block:
 
 ```

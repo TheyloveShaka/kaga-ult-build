@@ -16,7 +16,7 @@ Record the source, version, and licence of every third-party component in `docs/
 
 ## Component libraries
 
-Verified 2026-09-23. Re-check versions and licences at the time of use.
+Verified 2026-09-23; Arc UI and the bookmark pack 2026-10-21. Re-check versions and licences at the time of use.
 
 | Library | What it is | Licence | Status |
 |---|---|---|---|
@@ -26,6 +26,7 @@ Verified 2026-09-23. Re-check versions and licences at the time of use.
 | **Bencho** (bencho.dev) | Interactive blocks you tweak live before copying: checklists, assignees, slide to confirm, search | No public repo found | Live. Licence unknown, so use as a pattern reference, not a dependency, until confirmed |
 | **goey-toast** (`goey-toast`, `anl331/goey-toast`) | Morphing toast notifications with promise tracking: loading, then success or error in one element. Bundles an Agent Skill | MIT | v0.5.0, 1.3k stars. Use this, **not** `gooey-toast` |
 | **thinking-orbs** (`thinking-orbs`) | Named loading states for AI and long-running work | MIT | v0.3.2 |
+| **Arc UI** (uiarc.dev, `kuratlielia/arc-library`) | 181 animated components and 108 blocks via the shadcn CLI or an MCP server. Its author posted the layout-morph demo (one collection, six views) | Freemium: core free, Pro $199 once. Licence not stated on the site | Read the licence before use. The morph itself is built with the installed `motion-framer` layout animations or GSAP Flip, so it needs no purchase |
 
 Promise-tracking toasts and named loading states are the fastest way to meet the state-complete rule in `kaga-product-ui`.
 
@@ -40,3 +41,18 @@ For Phase 0 hunting. These show live interaction, which static galleries miss.
 | **Mobbin** (mobbin.com) | Real flows and components from top apps and sites, searchable by pattern. Paid, and a sponsor of the videos that recommended it, but a well-established library |
 | **Laws of UX** (lawsofux.com) | The psychology behind interface decisions; summarised in `kaga-conversion` |
 | **Scrolltide** (scrolltide.co) | A library of scroll interactions, each with a prompt to build it. Treat a prompt as a starting technique, not a finished design: it still goes through the shot list, art direction, and the reference-fidelity check |
+
+### Bookmark pack (2026-10-21)
+
+From a design bookmark list on X. Each site resolved and matches its description; pricing and licences were not checked. These are references, never the build: zero defaults applies to bought templates too.
+
+| Source | Best for |
+|---|---|
+| **fontinlogo.com** | The typefaces behind well-known logos. Use it when naming a font from a logo reference |
+| **iconly.design** | 900+ curated logos |
+| **logotouse.com** | Logo and identity references |
+| **landdding.com** | Landing page inspiration |
+| **motionin.design** | Premium interactive web sections, for motion and interaction ideas |
+| **wedoflow.com** | 1,300+ distinctive pages |
+| **wonderlist.design** | Premium Figma designs |
+| **modulify.ai/templates** | 100+ website templates from an AI site builder |

@@ -62,6 +62,35 @@ A personal greeting with the user's name and a short line of welcome, and ambien
 
 Cards lift a few pixels on hover. Numbers count up once on first load, never on every re-render. View changes cross-fade within the panel while the rail and dock stay still. All of it respects `prefers-reduced-motion`.
 
+## Saved languages
+
+Kaga keeps these for specific jobs. Use one when the brief matches; the house language above stays the default everywhere else. Each still goes through art direction: the structure is saved, while fonts and exact hexes are chosen per build.
+
+### Rapport: CRM and sales pipeline
+
+Kaga's pick for any CRM, sales, deals, invoicing, or operations dashboard. Source: the "rapport" concept by @code_and_chill (Instagram reel DejdH-cvBKB).
+
+- **Canvas**: a pale sage-to-cream gradient, warm and quiet, so the saturated cards carry all the colour.
+- **Four stage colours with fixed meanings**: mustard yellow, forest green, brick red, and near-black. Each pipeline stage owns one colour everywhere it appears: kanban column, deal card, stage-mix bar, history chips. Colour is data here, never decoration.
+- **Whole-card fills**: deal cards are solid stage colour with company, amount, close date, and an avatar stack. The amount is the largest text on the card.
+- **Navigation**: small text tabs across the top with the active tab as a black pill, plus a floating dark vertical icon rail on the left edge.
+- **Kanban with ghosts**: while a card is dragged, its old slot and the drop target show faded copies, so the move is legible before it lands.
+- **Detail as a coloured sheet**: opening a deal raises a card in its stage colour with a segmented stage progress bar, the key numbers (expected close, probability, weighted value), the people, the latest note, and one primary pill that advances the stage ("Move to Negotiation").
+- **Every state change confirms with an Undo toast**: a dark pill at bottom centre, the outcome in words ("Fleet licence expansion won, $7,710"), and a bright Undo pill. Prefer undo to a confirm dialog for any reversible action.
+- **Charts and tables** follow the house rules: big numeral with a small delta pill, one segmented stage-mix bar, a donut only for a single quota, status pills in invoice tables, ageing as plain bars.
+
+### Product-centred screens
+
+For product pages, profiles, bookings, and any app screen built around one subject. Source: Ayo Omolewa (Instagram reel Dd-o8qwRHYh), rebuilding generic flat screens for a headphone shop, a church, and a fitness coach.
+
+- **Three planes, not one.** Huge type at the back, the subject (a product cutout or a person) in the middle overlapping the type, controls on top. A flat screen puts everything on one plane; overlap is what makes it deep.
+- **One colour means tap.** Pick a single action colour; everything else is paper. If the brand colour is everywhere, nothing reads as pressable.
+- **One huge thing, everything else small, nothing in between.** The display word (product name, person's name, date) owns the screen; supporting text stays small and calm. Mid-sized text everywhere is the default look. This is per screen and sits inside the six-size scale in `kaga-art-direction`.
+- **Background from the subject.** Tint the upper field from the product's own colour (green headphones on deep green, paper below), or set a person against a clean neutral so the cutout reads.
+- **Voice fits the subject.** The church became editorial: serif headings on paper, a thin red rule, italic serif links ("Plan a visit"). The coach became athletic: condensed heavy type in one saturated blue behind the cutout, a bracketed stat ("8+ years coaching").
+- **The CTA bar carries two facts**: a full-width dark bar with the action on the left and the reassurance on the right ("Add to bag" with "Free returns", "Book a session" with "from $60"), plus an accent arrow block where it helps.
+- Cutouts come from `kaga-imagery` (generate on a keyed background, key on hue). Keep the edge clean; a haloed cutout breaks the depth.
+
 ## Content layout, not container layout
 
 The most common reason generated UI looks cheap: every group gets its own box. Header in a tinted block, stats in another tinted block, a divider under that, the whole thing inside a card.
@@ -96,6 +125,8 @@ Principles:
 
 Implementation notes that make these feel expensive: animate position changes with FLIP transforms rather than layout thrash, use `@property` to make custom properties animatable, prefer spring easing for anything that follows the pointer, and route real choreography to `motion-framer` or `gsap-scrolltrigger` per Law 6.
 
+**Layout morph.** When one collection can be shown several ways (grid, masonry, list, stack, carousel), switch views by flying the same cards to their new positions rather than re-rendering, so the user never loses an item. Build it with `motion-framer` layout animations or GSAP Flip; under reduced motion, crossfade.
+
 ## Navigation pattern: the refined top bar
 
 For product and marketing nav alike: a compact bar, a sliding highlight that follows hover between items rather than each item lighting up independently, and search that expands inline from an icon instead of occupying permanent width. Frosted glass is fine over imagery, but the text must still pass contrast against the busiest thing that can scroll under it.
@@ -108,6 +139,7 @@ For product and marketing nav alike: a compact bar, a sliding highlight that fol
 - [ ] Numbers use tabular figures and lead each stat card
 - [ ] Every async component covers idle, in progress per item, partial failure with retry, aggregate, success, and empty
 - [ ] No generic spinner where the state can be named
+- [ ] Reversible actions confirm with an Undo toast, not a dialog
 - [ ] Empty slots and empty states designed
 - [ ] Font named and sourced, not defaulted
 - [ ] Reduced motion honoured

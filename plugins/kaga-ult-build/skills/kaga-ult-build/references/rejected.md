@@ -14,3 +14,7 @@ That is a process. The "one shot" is the edit.
 This matters practically, not just as pedantry. If you believe the framing, you skip Phase 0, accept the first concept, let the font be inferred, and spend credits animating a frame nobody approved. You then get the output that framing actually produces, which is a generic site with an expensive header.
 
 So: take the techniques, refuse the promise. The reference hunt, the concept gate, the shot list, and the named font are the parts doing the work, and each of them is a step someone chose to take before prompting. When a source claims otherwise, look at what they did on screen rather than what they said, and record the technique rather than the pitch.
+
+**Jev, the routing model, was not adopted (2026-10-21).** Jev is a third-party "System One" model that scores which model should take a prompt. Its benchmarks come from one author's synthetic tests, and that author concedes that acting on a per-prompt pick inside Claude Code either discards the prompt cache or pays the expensive model to delegate, so routing belongs per session. Ours is already fixed per phase and per session by tables and scripts, at no cost. The principle was kept as "Routing without a thinker" in `cost-and-models.md`; the dependency was not.
+
+The same post's other promises were trimmed too. A main session "under 10k tokens" is not realistic for a lead that has to judge screenshots, and `fallbackModel` cannot "guarantee 100% availability" because rate limits do not trigger it.
