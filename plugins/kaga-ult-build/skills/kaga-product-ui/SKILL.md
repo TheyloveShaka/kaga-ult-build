@@ -21,7 +21,7 @@ Derived from a concept reference Kaga selected as his main dashboard direction. 
 
 - **Two saturated accents, used as full fills.** A hot orange or coral and an acid lime, each filling one hero card completely. They are surfaces, not sprinkles. A dashboard with the accent on every icon has no accent.
 - **One soft tint** as a third, quieter surface: a peach or blush wash for a secondary feature card.
-- **Status colour as text or a tinted pill**, never a solid saturated badge. Upcoming, In Progress, Scheduled, Failed, Successful: coloured words or a pale pill with a darker label.
+- **Status colour as text or a tinted tag**, never a solid saturated badge. Upcoming, In Progress, Scheduled, Failed, Successful: coloured words or a pale tag with a darker label, shaped by the radius scale.
 - **Check the accents for contrast every time.** White text on a hot orange commonly lands near 3:1 and fails AA for body text. Use near-black text on the lime and either dark text or large bold white on the orange, and state the ratio in `ART-DIRECTION.md`.
 
 ### Layout
@@ -35,13 +35,13 @@ Derived from a concept reference Kaga selected as his main dashboard direction. 
 - **Numerals are the hero.** Each stat card leads with a large display number, with a small muted label under it. "44 hours", "13 tasks", "$70,147.41".
 - **Tabular figures** for anything that changes or aligns: money, time, counts, table columns. Use `font-variant-numeric: tabular-nums`.
 - **Two text weights do most of the work**: a heavy weight for numbers and card titles, regular for everything else. Labels drop in size and contrast rather than gaining weight.
-- Name the family explicitly per `kaga-art-direction`. A clean geometric sans suits this language; pick one from a real source (General Sans or Satoshi from Fontshare, or Plus Jakarta Sans from Google Fonts are good fits) rather than letting a default through.
+- Name the family explicitly per `kaga-art-direction` and let Kaga pick it from a specimen. The geometric sans faces generated dashboards default to are on its banned lists.
 
 ### Components
 
-- **Pills for everything interactive or categorical**: nav items, tabs, segmented controls, filters, status tags, and primary buttons. Primary action is a solid near-black pill; secondary is a pale pill.
+- **Pills only where they carry meaning**: the segmented view switcher, filters, and the floating dock. Buttons, tags, and labels take their radius from the art direction's scale. Pill-shaped everything is the AI-default look Kaga rejects; a reference earns a few pills, not all of them. Primary action is solid near-black, secondary pale.
 - **Floating bottom dock** for switching between top-level views: a compact dark segmented pill fixed at the bottom centre. It keeps navigation reachable without a heavy header.
-- **Top bar as a row of small pills**: home, a primary add action, search, notifications, plus ambient context such as time and weather.
+- **Top bar as a row of small controls**: home, a primary add action, search, notifications, plus ambient context such as time and weather.
 - **Dark icon rail** with a notched active state: the active icon sits in a curved cut-out that joins the rail to the content panel, so position reads without a label.
 - **Date pickers as chip rows**: day name over date, the selected day a solid dark chip.
 - **Event and list rows** carry a thin left accent bar in their status colour.
@@ -50,8 +50,9 @@ Derived from a concept reference Kaga selected as his main dashboard direction. 
 ### Charts
 
 - Smooth spline lines in the accent colours, no heavy axes, faint or no gridlines.
-- **Data labels as small dark pills** sitting on the line, instead of a legend the eye has to cross-reference.
-- Highlight the current or selected value with a soft column wash and a floating pill tooltip.
+- **Data labels as small dark tags** sitting on the line, instead of a legend the eye has to cross-reference.
+- Highlight the current or selected value with a soft column wash and a floating tooltip.
+- **No Dribbble charts.** Keep an axis or direct labels, square bar ends where values are read, and exactly one bar per data point.
 - Read `dataviz` before writing the first line of any chart code.
 
 ### Warmth
@@ -127,6 +128,21 @@ Implementation notes that make these feel expensive: animate position changes wi
 
 **Layout morph.** When one collection can be shown several ways (grid, masonry, list, stack, carousel), switch views by flying the same cards to their new positions rather than re-rendering, so the user never loses an item. Build it with `motion-framer` layout animations or GSAP Flip; under reduced motion, crossfade.
 
+## Flow moves that read senior
+
+- **The main task is the biggest thing.** On a transfer screen the amount dominates and the currency picker sits inside the field.
+- **Recognition over recall.** Faces, logos, or icons beside names and accounts; recent items above the search.
+- **Show the consequence before commit**: the new balance, the delivery date, the total with fees.
+- **Selection over typing.** Offer the common answers as choices with an "Other"; add search and a Skip where a list cannot be complete.
+- **Direct manipulation where it fits.** A slider or swipe for a range beats a radio list.
+- **Say it once.** Labels never repeat what the heading already says.
+- **Feedback within a tap.** A pressed state at once, a named loading state if it takes longer, and a badge on the destination when something is saved there.
+- **Reuse one motif to link related parts**, such as the same pulsing dot on the live period and the action that affects it.
+- **Filters help people decide.** Open them as a sheet over the results, keep every filter in one scroll, label the apply button with the count ("Show 41 homes"), show each option's count before it is picked, use "3+" choices instead of steppers for values people already know, pair a range slider with manual entry, and put a histogram behind price when the data exists.
+- **Cards stay consistent whatever gets uploaded.** Photo on top, name and numbers outside it. Show the product rather than the logo, large enough to sell it, and keep one shape language per screen.
+- **Give control when no single layout is right**: a cards or list switch, plus the result count.
+- **Design the transitions, not only the screens.** Products people remember move between states like film; a set of static screens reads as average.
+
 ## Navigation pattern: the refined top bar
 
 For product and marketing nav alike: a compact bar, a sliding highlight that follows hover between items rather than each item lighting up independently, and search that expands inline from an icon instead of occupying permanent width. Frosted glass is fine over imagery, but the text must still pass contrast against the busiest thing that can scroll under it.
@@ -140,6 +156,7 @@ For product and marketing nav alike: a compact bar, a sliding highlight that fol
 - [ ] Every async component covers idle, in progress per item, partial failure with retry, aggregate, success, and empty
 - [ ] No generic spinner where the state can be named
 - [ ] Reversible actions confirm with an Undo toast, not a dialog
+- [ ] Pill shapes only on the elements this language lists
 - [ ] Empty slots and empty states designed
 - [ ] Font named and sourced, not defaulted
 - [ ] Reduced motion honoured

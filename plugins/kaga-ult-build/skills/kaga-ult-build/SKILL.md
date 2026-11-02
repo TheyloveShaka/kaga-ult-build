@@ -46,12 +46,12 @@ Worker agents pin the full model id, not the `sonnet` alias, because the alias c
 These override convenience. If you are about to break one, say so out loud instead.
 
 1. **Delegation is binding.** A phase the plan assigns to an agent gets that agent, spawned with the `Agent` tool. Doing it inline erases the independent review that made the plan worth writing. If you skip a delegation, say so immediately.
-2. **Zero defaults.** No system font stack, no stock Tailwind palette, no unstyled shadcn, no uniform radius. If it looks like the framework's demo, it is not done.
+2. **Zero defaults.** No system font stack, no stock Tailwind palette, no unstyled shadcn, no uniform radius, and none of the AI-default look: the banned faces in `kaga-art-direction`, pill-shaped everything, the italic-serif-accent hero, indigo and teal gradients. If it looks like the framework's demo, it is not done.
 3. **Plan, Act, Audit, with a human gate.** The builder never signs off its own work. **An autonomous run stops at the end of Phase 1 and waits for Kaga.** A plan approved by the thing that wrote it is not a checkpoint.
 4. **No em dashes, and no narrating code comments.** Anywhere, including rendered copy. Rationale lives in docs, not in code.
 5. **Images are the product.** No greybox ships. Every slot is sourced, generated, or a written ask to the client.
 6. **Do not reinvent an installed skill.** Route to the specialist; see `references/routing.md`. Hand-rolling what is installed is the most common waste. If a routed skill is missing, name the plugin that provides it and do the work directly; never skip the step silently.
-7. **Look before you show.** Render it, screenshot it beside each reference move it was meant to reproduce, and fix what does not match before Kaga sees it. First builds shipping bland is the most repeated correction in this history.
+7. **Look before you show.** Render it, screenshot it beside each reference move it was meant to reproduce, and fix what does not match before Kaga sees it. Run the AI-default scan (`kaga-launch-check`, Block F) on every screen first. First builds shipping bland is the most repeated correction in this history.
 
 ## Tracks
 
@@ -68,7 +68,7 @@ Run `kaga-reference-hunt`: ten references, the specific move worth taking from e
 
 - **1a Extraction (Track A).** Pull logo, favicon, colours, fonts, and copy from the live site and the client's own files (`pdf`, `xlsx`). Name the brand's signature element and confirm it with Kaga. Output `docs/BRAND-EXTRACT.md`.
 - **1b Concepts and the adversarial gate.** Three genuinely different directions, each with its narrative structure (`kaga-scroll-narrative`). Kaga picks. Then a *different* agent attacks the pick: where it fails on mobile, which beat is decorative, what reads as generic, the weakest beat and its replacement. It finds holes, it does not redesign. Record the outcome in `docs/DECISIONS.md`.
-- **1c Art direction.** `kaga-art-direction` plus `kaga-conversion`: palette with contrast ratios, named and licensed fonts, motion language, spacing scale. Dashboards and app screens use the house language in `kaga-product-ui`.
+- **1c Art direction.** `kaga-art-direction` plus `kaga-conversion`: palette built from a named source with contrast ratios, named and licensed fonts, motion language, spacing scale. Kaga picks the palette and the type pairing from three rendered specimens each. Dashboards and app screens use the house language in `kaga-product-ui`.
 - **1d Plan.** `docs/PLAN.md`: routes, section intents, the image plan (`kaga-imagery`), data model, acceptance criteria, and the crew table.
 - **1e Project `CLAUDE.md`** via `init`. Update, never overwrite; keep hard-won rules.
 

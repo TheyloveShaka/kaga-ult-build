@@ -87,6 +87,17 @@ A recognisable set of defects appears in generated builds regardless of the mode
 - **Duplicate near-identical components.** Three card variants doing one job. `kaga-integrator` owns this, but check it here too.
 - **Default rounding everywhere.** One radius applied uniformly to every element regardless of role.
 - **Generic filler copy.** Sections that exist because a template has them, saying nothing specific about this business.
+- **The AI-default look.** A face from the banned lists in `kaga-art-direction`, an italic serif accent word in a sans headline, uppercase mono eyebrows, a tag pill above the hero headline, pill-shaped everything, gradient headline text, indigo-to-violet or blue-to-teal gradients. Kaga calls this "Claude defaults". Run this scan on every page before Kaga sees it, not only at launch:
+```js
+const banned = ['Inter', 'Geist', 'Geist Mono', 'Instrument Serif', 'Space Grotesk', 'DM Sans', 'Manrope', 'Plus Jakarta Sans', 'JetBrains Mono', 'Satoshi', 'Clash Display', 'General Sans', 'Cabinet Grotesk', 'Switzer', 'Fraunces', 'Bricolage Grotesque', 'Sora', 'Outfit', 'Roboto', 'Open Sans', 'Lato', 'Montserrat', 'Poppins', 'Nunito', 'Raleway'];
+const els = [...document.querySelectorAll('body *')].filter(e => e.getClientRects().length);
+const fonts = [...new Set(els.map(e => getComputedStyle(e).fontFamily.split(',')[0].replace(/["']/g, '').trim()))].filter(f => banned.includes(f));
+const pills = els.filter(e => { const s = getComputedStyle(e), h = e.offsetHeight; return h > 0 && h < 64 && parseFloat(s.borderTopLeftRadius) >= h / 2 && (s.backgroundColor !== 'rgba(0, 0, 0, 0)' || s.borderTopWidth !== '0px'); }).length;
+const accentItalics = [...document.querySelectorAll('h1 *, h2 *')].filter(e => getComputedStyle(e).fontStyle === 'italic').length;
+const gradientText = els.filter(e => { const s = getComputedStyle(e); return (s.backgroundClip || s.webkitBackgroundClip) === 'text'; }).length;
+({ fonts, pills, accentItalics, gradientText })
+```
+Expect `fonts` empty unless Kaga picked one from a specimen, `pills` within what `ART-DIRECTION.md` allows, and `accentItalics` and `gradientText` at 0 unless they were chosen on purpose.
 - **Icon soup.** Mixed icon sets, inconsistent weights and sizes in one row.
 - **Text baked into an image** where it should be DOM. Unselectable, invisible to search, unreadable to a screen reader. See `kaga-scroll-narrative`.
 - **The mobile stack default.** Anything laid out in a row on desktop stacking vertically on mobile whether or not that is right. A three-item stat row usually wants to stay one row at a smaller size, not become three.
@@ -97,7 +108,7 @@ Each of these reached Kaga at least once. Run the checks, do not eyeball them.
 
 **Font audit.** Every text node uses the named families, numerals included. Run in the page console and expect an empty list:
 ```js
-const allowed = ['General Sans', 'Satoshi'];
+const allowed = ['Display Family', 'Text Family'];
 [...new Set([...document.querySelectorAll('body *')].filter(e => e.childNodes.length && [...e.childNodes].some(n => n.nodeType === 3 && n.textContent.trim())).map(e => getComputedStyle(e).fontFamily.split(',')[0].replace(/["']/g, '').trim()))].filter(f => !allowed.includes(f))
 ```
 Set `allowed` to the families in `ART-DIRECTION.md`.

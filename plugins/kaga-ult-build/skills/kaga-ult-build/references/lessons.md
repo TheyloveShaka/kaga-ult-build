@@ -24,6 +24,8 @@ Mined from Kaga's build history across UWA, MyLand.ai, Kamwe Forex, Frozen Baske
 
 10. **Builders report pass on broken screens.** Kaga Hotel v1: builders reported clean twice while a desktop stage scrolled 430px sideways, a clip never played, and a DRAFT label was on screen; three non-builder audits found 10 blockers. Rule: one script shoots every screen at every viewport into contact sheets, and the lead opens them before and after each agent. A builder's "pass" is not a look.
 
+12. **The AI-default look survived every release up to v2.4.** "I still see Claude default fonts and pills", plus weak palettes (Kaga Systems and later, 2026-11-02). The cause was the skill itself: its font table named Satoshi, Instrument Serif, and Fraunces, its example spec named one of them, and the dashboard language said "pills for everything". Rule: no named font shortlist anywhere in the skill; banned lists plus rendered specimens Kaga picks from; palettes built from a named source; the AI-default scan in `kaga-launch-check` Block F before anything is shown.
+
 11. **The deployed site was slow or dead past the hero** (Kaga Hotel, 2026-09-23: "the page still takes yearssss", "the rest of the page doesn't load except for the hero"). Rule: a loader never gates content, and "done" is checked on the deployed URL with a throttled mobile profile, not on localhost.
 
 ## Standing preferences

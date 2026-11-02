@@ -42,6 +42,10 @@ When a site is JS-heavy or the fetch returns a shell, use the Browser pane: `pre
 
 When the reference arrives as video rather than a URL, a competitor walkthrough, a technique breakdown, a client's own screen recording, run it through the `watch` skill. It downloads, extracts frames, and transcribes, so the reference becomes real context instead of something you infer from a description. Requires `yt-dlp` and `ffmpeg` installed. Scroll-driven work is often only legible as video, so this matters more for motion references than for layout ones.
 
+## Directions worth offering (2026)
+
+Trends are options for the spread, never defaults: refined brutalism (full-width type with a clear aesthetic), hand-drawn illustration systems with a mascot, playful or gamified interaction with an ordinary menu as the escape, 2D mixed with 3D, restrained variable-font motion, and modular grids. Bento grids and soft mesh gradients are now so common on generated sites that they need a reason.
+
 ## Output format
 
 Present as a numbered list. Each entry:

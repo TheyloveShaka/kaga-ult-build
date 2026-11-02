@@ -17,6 +17,19 @@ Sources worth consulting: the extracted brand (Track A), competitor palettes to 
 
 For the East African and Ugandan market specifically, check the assumption before importing a Western palette convention wholesale.
 
+### Build it from a source, in OKLCH
+
+Palettes invented from adjectives ("modern, trustworthy") land on the same few AI choices every time. Start from something real, in this order: the client's own assets (Track A), the hero photograph (sample its dominant and accent colours), or a reference Kaga picked. Name the source next to every hue.
+
+Build the ramps in OKLCH, not hex. Lightness should be the only thing that steps between shades; hex hides that, and HSL greys out its darkest and lightest shades. oklch.com is a quick picker and checker.
+
+- **Neutrals first.** Choose the neutral ground, then tint it toward the brand hue at very low chroma (about 0.005 to 0.02) so it belongs to the palette.
+- **Surfaces by lightness.** Dark mode: the base, then roughly +0.05 and +0.10 lightness for raised and top surfaces; the lighter the surface, the closer it feels, so save the lightest for what matters. Light mode: start from 1 minus each value, then adjust so the top surface is the lightest and the base the darkest.
+- **Two text shades.** Headings high contrast but not pure white or black (around 0.95 lightness in dark mode); body slightly muted (around 0.75 to 0.8). Both still pass.
+- **One brand colour, chroma kept sane.** UI colour rarely needs chroma above 0.15 to 0.2. Hover and pressed states move lightness, not hue.
+- **Light comes from above.** In dark mode a gradient between two surface shades plus a slightly lighter top border reads as a lit edge. In light mode the border matches the surface and depth comes from a two-layer shadow: a short darker one plus a long soft one.
+- Emit tokens as `oklch()` values; every current browser supports them, including Chrome on mid-range Android.
+
 ### The structure
 
 Do not ship a single brand colour and five greys. Build:
@@ -44,6 +57,10 @@ Not a law, a starting discipline. Break it deliberately and say why. The common 
 
 Premium palettes usually lean on near-black, near-white, and restrained neutrals so the imagery carries the colour. Loud yellows and reds read as sale, fast food, and impulse buying unless that is the intent. This is a default for premium work, not a law: bright colour can be premium when it is deliberate and used sparingly. For a premium wordmark, a clean, well-set name with no pictogram is the convention in fashion and lifestyle; other sectors, such as watches and cars, differ, so check the sector's references.
 
+### Palettes that read as AI-made
+
+Avoid unless the client's brand or Kaga's chosen reference supplies them: indigo or violet primaries, indigo-to-purple and blue-to-teal gradients, lime or neon green on near-black, gradient headline text, Tailwind's stock hues, multi-colour mesh backgrounds behind body text, and an accent spent on every icon. A gradient, when used, stays within one hue.
+
 ### Rules
 
 - Every value gets a token name. No hex in components.
@@ -68,23 +85,30 @@ Choose two, occasionally three. Justify each against the audience and the medium
 
 ### Banned by default
 
-These are the faces that get reached for when no decision is made. Every one of them is a competent typeface, and that is exactly the problem: they are the sound of a site that nobody art-directed.
+Two lists. The first are the faces reached for when no decision is made. The second is the newer AI default: the faces generated sites land on so often that Kaga reads them as "Claude defaults" on sight.
 
-`Inter`, `Roboto`, `Open Sans`, `Lato`, `Montserrat`, `Poppins`, `Nunito`, `Raleway`, `Source Sans`, `system-ui` as a primary, and any bare `font-sans` / `font-serif` / `font-mono` Tailwind default.
+- **Generic defaults:** `Inter`, `Roboto`, `Open Sans`, `Lato`, `Montserrat`, `Poppins`, `Nunito`, `Raleway`, `Source Sans`, `system-ui` as a primary, and any bare `font-sans` / `font-serif` / `font-mono` Tailwind default.
+- **The AI-default look:** `Geist`, `Geist Mono`, `Instrument Serif`, `Space Grotesk`, `DM Sans`, `Manrope`, `Plus Jakarta Sans`, `JetBrains Mono`, `Satoshi`, `Clash Display`, `General Sans`, `Cabinet Grotesk`, `Switzer`, `Fraunces`, `Bricolage Grotesque`, `Sora`, `Outfit`.
 
-To use one anyway you must write a sentence in `ART-DIRECTION.md` naming the specific property of that face that makes it right for this brief. "It is clean and readable" is not that sentence. If you cannot write it, pick something else.
+Banned as patterns too, whatever the face: an italic serif accent word inside a sans headline, uppercase mono eyebrow labels with wide tracking, and a small tag pill above the hero headline. Together they are the most recognisable AI hero.
+
+A face from either list ships only if Kaga picks it from a rendered specimen (see "Kaga picks from specimens"). A written justification is not enough.
 
 ### Where to actually look
 
-Pick from real type sources, and pick for the brief:
+Search by character, not by name. A named shortlist in this file would become the next default, so there deliberately is none. Describe what the brief needs ("a warm humanist serif that holds up at 16px", "a condensed grotesque with real weight at display sizes") and search for that.
 
-| Source | Use for |
+| Source | How to use it |
 |---|---|
-| **Fontshare** (fontshare.com) | Free-for-commercial, genuinely characterful. Start here. Satoshi, Clash Display, General Sans, Switzer, Cabinet Grotesk, Bespoke Serif. |
-| **Google Fonts** | Free, reliable, self-hostable. Go past page one: Fraunces, Instrument Serif, Bricolage Grotesque, Playfair Display, DM Serif, Space Grotesk, Sora, Outfit, Newsreader. |
-| **Adobe Fonts** | Included with a Creative Cloud seat, wide serious catalogue. |
-| **Foundries** (Klim, Grilli Type, Pangram Pangram, Colophon, Displaay, ABC Dinamo) | When the budget carries a licence. At $10k a display licence is a legitimate line item, so put it in `docs/BUSINESS-CASE.md` rather than avoiding it. |
-| **Variable fonts** | One file, full weight and optical-size range. Prefer them when the design uses more than three weights. |
+| **Fontshare** (fontshare.com) | Free for commercial use. Filter by category and go well past the first page; the front page is the default set. |
+| **Google Fonts** | Free, self-hostable. Sort by newest or trending, never by most popular. |
+| **Libre foundries** (Velvetyne, Collletttivo) and **uncut.wtf** as a catalogue | Characterful display faces that generated sites rarely use. Check each licence; uncut.wtf lists faces under mixed terms. |
+| **Future Fonts** (futurefonts.xyz) | Inexpensive in-progress faces from independent designers. |
+| **Adobe Fonts** | Included with a Creative Cloud seat. |
+| **Foundries** (Klim, Grilli Type, Pangram Pangram, Colophon, Displaay, ABC Dinamo, Commercial Type) | When the budget carries a licence. At $10k a display licence is a legitimate line in `docs/BUSINESS-CASE.md`. Pangram Pangram's free downloads are for personal use only. |
+| **Variable fonts** | One file, full weight and optical-size range. Prefer them above three weights, and for restrained weight or slant animation. |
+
+Never carry the previous build's pick into the next one by default. Faces Kaga approved before (Boska with Martian Mono on Kaga Systems) belong to that build.
 
 **Check the licence before you commit.** Free for personal use is not free for a paying client's commercial site. Record the licence for every face in `ART-DIRECTION.md`, and if a paid licence is needed, say who buys it, you or the client.
 
@@ -116,11 +140,15 @@ A model shown a reference image will guess the typeface, and it guesses wrong. T
 
 So identify the face explicitly, then pass the name to whoever builds. To match a face from a reference: compare against a catalogue of popular faces visually, or use a font identification service (for a logo, fontinlogo.com lists the faces behind well-known marks), then confirm by setting the same string in the same weight and comparing letterforms side by side. Look at `a`, `g`, `R`, and the numerals, which differ most between similar faces.
 
-Then in every downstream prompt and spec: state the family name and where it loads from. "Use Instrument Serif, imported from Google Fonts, weight 400" is a specification. "Match the font in the reference" is a guess with extra steps.
+Then in every downstream prompt and spec: state the family name and where it loads from. "Use [family], self-hosted from [source], weights 400 and 700" is a specification. "Match the font in the reference" is a guess with extra steps.
 
 ### Loading
 
 Self-host or `next/font`. Preload the display face. `font-display: swap` with a metric-matched fallback so the layout does not jump. State the strategy, do not leave it to the framework.
+
+## Kaga picks from specimens
+
+Hex swatches and font names in a document are not a decision; they are how defaults slip through. For the palette and for the type pairing, render three genuinely different options on the real hero section: the actual background, headline, body, a card, and the primary button, at 1440px and 375px. Kaga picks one or mixes. Record the pick and the two rejected options in `ART-DIRECTION.md`. Nothing downstream starts until this is done.
 
 ## Motion language
 
@@ -137,12 +165,16 @@ Write it down once, then every agent follows it:
 The small, specific settings that separate a professional finish from a default one. Starting points, not laws; deviate on purpose.
 
 - **Large type**: tracking about -2% to -3%, line height 110% to 120%. Untightened display type is the quickest tell of a default build.
-- **Size count**: about six font sizes on a landing page. Dashboards keep body and labels at 24px or below for density; hero stat numerals are the one exception.
+- **Size count**: per view, about four sizes and two weights; across a landing page, about six sizes. Count them before showing; more is the beginner tell. Dashboards keep body and labels at 24px or below; hero stat numerals are the exception.
 - **Spacing on a 4px base**, with related items grouped tighter than unrelated ones (for example 8 to 16px inside a group, 32px or more between groups). The spacing itself carries the hierarchy.
 - **Shadows**: low opacity, large blur. Cards need very little; popovers and modals need more. If the shadow is the first thing you notice, it is wrong.
 - **Dark mode depth** comes from lighter surfaces, not shadows: the more elevated, the lighter. Borders drop in contrast, chips lose saturation, and deep purples, reds, or greens are all valid darks, not only navy and grey.
 - **Icons sized to the line height** of the text beside them, 24px icon to 24px line height. Oversized icons are the common mistake.
 - **Button padding** about twice as wide as tall, with default, hover, pressed, disabled, and loading states.
+- **One radius per size class.** Small components (inputs, buttons, chips) share one radius, and twins such as Back and Skip are identical in size, radius, and style.
+- **Pills are a shape decision, not a default.** Full rounding is one stop on the radius scale, used only where the chosen reference uses it. Count the pill shapes on a page; more than a handful on a marketing page is the AI look Kaga rejects.
+- **Effects earn their place.** Remove a shadow before tuning it, keep gradients within one hue, and delete arrows, strokes, and labels that repeat what a heading already says.
+- **Icons from one library** with matched stroke width, corners, and fill. Different styles only in visually separate zones. Unfamiliar icons get a label or tooltip.
 - **One primary colour**, with tints for backgrounds and shades for text. Semantic colours carry meaning (blue trust, red danger, amber warning, green success) and are never decoration.
 
 ## Spacing, radius, elevation
@@ -166,3 +198,6 @@ The small, specific settings that separate a professional finish from a default 
 - [ ] Fonts are chosen with an argument, and the load strategy is written
 - [ ] Motion has durations, curves, and a reduced-motion fallback
 - [ ] Nothing in the document is a framework default
+- [ ] No face from either banned list unless Kaga picked it from a specimen
+- [ ] The palette names its source and was picked from three rendered options
+- [ ] Pill shapes appear only where the radius scale assigns them
