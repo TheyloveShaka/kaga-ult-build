@@ -32,7 +32,7 @@ Phase 1   Plan                  extraction, art direction, crew table, project C
 Phase 2   Act                   nine agents, delegated, parallel where possible
 Phase 3   Audit                 security, UAT in a real browser, design integrity
 Phase 4   Business case         true cost, margin, the number to quote
-Phase 5   Launch                deploy checklist, ship, verify live, handoff
+Phase 5   Launch                CI/CD gate, ship from a green main, verify live, handoff
 ```
 
 ## Who leads
@@ -89,7 +89,7 @@ What this plugin adds on top: the pipeline order, the crew table and the rule th
 claude plugin marketplace add freshtechbro/claudedesignskills
 ```
 
-Then install at least `modern-web-design`, `gsap-scrolltrigger`, `motion-framer`, `react-three-fiber`, `locomotive-scroll`, `lottie-animations`, `animated-component-libraries`. The `design`, `engineering`, and `anthropic-skills` plugins supply the rest. Connect the Vercel MCP for Phase 5 deployment and live-error verification.
+Then install at least `modern-web-design`, `gsap-scrolltrigger`, `motion-framer`, `react-three-fiber`, `locomotive-scroll`, `lottie-animations`, `animated-component-libraries`. The `design`, `engineering`, and `anthropic-skills` plugins supply the rest. Connect the Vercel MCP for Phase 5 deployment and live-error verification. Optional, with your yes: Graphify (`pipx install graphifyy`) so large repos are read from a code graph instead of file by file; see `references/memory-and-graph.md`.
 
 ## Commands
 
@@ -136,7 +136,7 @@ Fill in your real numbers and set `confirmed: true`. Every future quote then use
 
 ## Default stack
 
-Next.js 15 App Router, TypeScript, Tailwind wired to CSS custom properties, shadcn/ui restyled, Supabase, Vercel. Chosen for the metadata API, JSON-LD, and image optimisation the SEO deliverable depends on. Override to Vite + React 19 for app-like builds with no SEO surface.
+Next.js 15 App Router, TypeScript, Tailwind wired to CSS custom properties, shadcn/ui restyled, Supabase, Vercel. Chosen for the metadata API, JSON-LD, and image optimisation the SEO deliverable depends on. Override to Vite + React 19 for app-like builds with no SEO surface. GitHub Actions gates every deploy; templates in `references/ci-cd.md`. This repo validates itself the same way: `python scripts/validate.py`.
 
 ## Licence
 

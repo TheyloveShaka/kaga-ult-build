@@ -12,13 +12,14 @@ The house method. Every premium build runs through it, small ones included.
 1. **Read the lessons.** `references/lessons.md`, then `~/.claude/kaga/lessons.md` if it exists. They are the mistakes past builds already paid for. Do not repeat one.
 2. **State the lead and the track** in one line each.
 3. **Open `docs/PROGRESS.md`** and keep it current. Usage limits interrupt builds; a resume should cost one read.
+4. **Map before you search.** On a repo of 50+ source files with Graphify set up, read `graphify-out/GRAPH_REPORT.md` and query the graph before any Glob, Grep, or Explore agent. See `references/memory-and-graph.md`.
 
 ## Lead and crew
 
 - **Opus 5.5 (`claude-opus-5-5`) leads by default.** The main session orchestrates: it plans, judges, and routes. If the session is on another model, say so in one line rather than proceeding as if it were Opus.
 - **Astra leads only when Kaga explicitly says so** ("Astra leads", "use Astra as the orchestrator"). Asking Astra for a review is a consultant call, not a lead change. Astra-lead mode is the most expensive configuration there is; its rules live in `kaga-budget` and apply in full.
 - **Cheaper agents do the volume.** The lead never builds components, reads large files, or runs sweeps itself. It delegates, then judges what comes back.
-- **Three tiers, chosen by the task.** Opus 5.5 judges, Sonnet 5.5 builds, Haiku 5.5 (`claude-haiku-5-5`, about a twentieth of Sonnet's price) swarms: repo maps, greps, docs lookups, link and asset sweeps, contact sheets, history mining. Haiku never makes a design call or writes code that ships. Spawn read-only agents such as Explore with `model: "haiku"`.
+- **Three tiers, chosen by the task.** Opus 5.5 judges, Sonnet 5.5 builds, Haiku 5.5 (`claude-haiku-5-5`, about a twentieth of Sonnet's price) swarms: repo maps (the Graphify graph first, where one exists), greps, docs lookups, link and asset sweeps, contact sheets, history mining. Haiku never makes a design call or writes code that ships. Spawn read-only agents such as Explore with `model: "haiku"`.
 - **Opus steps in at three moments:** before a plan locks, when the same failure happens twice, and before anything is called done. In between, the crew works and the lead reads summaries.
 - **Lean mode only when Kaga asks:** `claude --model opusplan` runs Opus 5.5 in plan mode and Sonnet 5.5 for execution, saving Opus usage on long builds. Opus as lead stays the default.
 - **Decide in code what needs no thinker.** Which file, which tool, retry or stop: fixed rules and scripts settle these, not model calls. See "Routing without a thinker" in `references/cost-and-models.md`.
@@ -103,7 +104,7 @@ Then prove Law 6 in writing in `docs/AUDIT.md`: which foundry supplied the fonts
 
 ## Phase 5: Launch
 
-`engineering:deploy-checklist`, then deploy (Vercel MCP when connected). **Verify the live URL, not the build**: every image, the logo, and the favicon load (paths are case-sensitive once hosted), the critical path works, and `get_runtime_errors` is clean. Buying a domain spends Kaga's money, so get a yes first. Hand off with `design:design-handoff`. Stop dev servers and background tasks.
+`engineering:deploy-checklist`, then deploy through the pipeline in `references/ci-cd.md`: production only from a green main (Vercel MCP for logs and rollback). **Verify the live URL, not the build**: every image, the logo, and the favicon load (paths are case-sensitive once hosted), the critical path works, and `get_runtime_errors` is clean. Buying a domain spends Kaga's money, so get a yes first. Hand off with `design:design-handoff`. Stop dev servers and background tasks.
 
 ## Phase 6: Retro
 
@@ -114,6 +115,7 @@ Before closing, append one to three lessons from this build to `~/.claude/kaga/l
 - `docs/CREW-LOG.md`: append-only. Every agent reads it first and appends before returning: decided, assumed, left for others, unresolved.
 - `docs/DECISIONS.md`: one line per settled decision. Reopening one means arguing against the record.
 - `docs/PROGRESS.md`: where the build stands, updated at every phase boundary with a three-line status.
+- `graphify-out/`: the code map, rebuilt on every commit. See `references/memory-and-graph.md`.
 
 ## Standing quality bar
 
@@ -129,7 +131,8 @@ Before closing, append one to three lessons from this build to `~/.claude/kaga/l
 - [ ] Metadata, OG, and JSON-LD on every route
 - [ ] No em dashes, no narrating comments, no sound unless asked
 - [ ] Security clean or accepted with a reason (Tracks A to C)
-- [ ] Accounts, money, or saved forms: unit tests on pricing and permission logic, the UAT flows saved as Playwright specs, and a GitHub Actions run on every push that blocks the deploy when red
+- [ ] CI/CD per `references/ci-cd.md`: the UAT flows saved as Playwright specs, the launch scan as a test, and production deployed only from a green main (Track D: `ci.yml` only)
+- [ ] Accounts, money, or saved forms: unit tests on pricing and permission logic as well
 
 ## References
 
@@ -140,3 +143,5 @@ Read only when the phase needs them:
 - `references/cost-and-models.md`: paid routing, prompt shape and caching, effort, output length
 - `references/sources.md`: vetted component libraries and inspiration sources, and how to vet a new one
 - `references/rejected.md`: ideas deliberately not adopted, and why
+- `references/ci-cd.md`: the pipeline, workflow templates, and the launch scan as a Playwright test
+- `references/memory-and-graph.md`: which memory answers which question, and Graphify
