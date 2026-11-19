@@ -173,7 +173,7 @@ test('no horizontal scroll at 375 and a real 404', async ({ page }) => {
 
 test('no em or en dashes in rendered text', async ({ page }) => {
   await page.goto('/');
-  expect(await page.evaluate(() => /[–—]/.test(document.body.innerText))).toBe(false);
+  expect(await page.evaluate(() => /[\u2013\u2014]/.test(document.body.innerText))).toBe(false);
 });
 ```
 
