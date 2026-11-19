@@ -89,7 +89,7 @@ What this plugin adds on top: the pipeline order, the crew table and the rule th
 claude plugin marketplace add freshtechbro/claudedesignskills
 ```
 
-Then install at least `modern-web-design`, `gsap-scrolltrigger`, `motion-framer`, `react-three-fiber`, `locomotive-scroll`, `lottie-animations`, `animated-component-libraries`. The `design`, `engineering`, and `anthropic-skills` plugins supply the rest. Connect the Vercel MCP for Phase 5 deployment and live-error verification. Optional, with your yes: Graphify (`pipx install graphifyy`) so large repos are read from a code graph instead of file by file; see `references/memory-and-graph.md`.
+Then install at least `modern-web-design`, `gsap-scrolltrigger`, `motion-framer`, `react-three-fiber`, `locomotive-scroll`, `lottie-animations`, `animated-component-libraries`. The `design`, `engineering`, and `anthropic-skills` plugins supply the rest. Connect the Vercel MCP for Phase 5 deployment and live-error verification. Optional: Graphify (`graphifyy` on PyPI) so large repos are read from a code graph instead of file by file; see `references/memory-and-graph.md`.
 
 ## Commands
 

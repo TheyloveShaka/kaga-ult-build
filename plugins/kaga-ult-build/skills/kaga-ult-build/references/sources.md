@@ -62,5 +62,5 @@ From a design bookmark list on X. Each site resolved and matches its description
 | Source | What it is | Note |
 |---|---|---|
 | **details.so** | Handpicked site inspiration plus an MCP server that lets Claude search it for sections and transitions | Pro $9/month, Vault with AI access $19/month per its page. A Phase 0 reference source, never the build |
-| **Graphify** (`graphifyy` on PyPI) | Turns a repo into a queryable code graph so Claude reads the map, not the files | Apache-2.0, offline for code, no telemetry. Not installed; needs Kaga's yes. Rules in `memory-and-graph.md` |
+| **Graphify** (`graphifyy` on PyPI) | Turns a repo into a queryable code graph so Claude reads the map, not the files | Apache-2.0, offline for code, no telemetry. Installed 2026-11-19, tested on MyLand (about 3x on a real trace). Rules in `memory-and-graph.md` |
 | **SEO tools named in a reel** | Claude SEO (site audit), a Google Search Console MCP, Open SEO (open-source keyword, rank, and backlink research), GEO Optimizer (AI-search readability fixes) | Names only. Read each repo and the permissions it asks for before installing; third-party plugins run with your access |

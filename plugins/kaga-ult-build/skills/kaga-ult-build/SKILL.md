@@ -12,7 +12,7 @@ The house method. Every premium build runs through it, small ones included.
 1. **Read the lessons.** `references/lessons.md`, then `~/.claude/kaga/lessons.md` if it exists. They are the mistakes past builds already paid for. Do not repeat one.
 2. **State the lead and the track** in one line each.
 3. **Open `docs/PROGRESS.md`** and keep it current. Usage limits interrupt builds; a resume should cost one read.
-4. **Map before you search.** On a repo of 50+ source files with Graphify set up, read `graphify-out/GRAPH_REPORT.md` and query the graph before any Glob, Grep, or Explore agent. See `references/memory-and-graph.md`.
+4. **Map before you search.** On a repo of 50+ source files with Graphify set up, read the report summary and query the graph before any Glob, Grep, or Explore agent. See `references/memory-and-graph.md`.
 
 ## Lead and crew
 
