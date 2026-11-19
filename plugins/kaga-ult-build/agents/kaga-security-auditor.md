@@ -41,6 +41,18 @@ Check these first, they are where the real findings live:
 - Contact forms with no rate limit, becoming a spam relay or a cost amplifier
 - `dangerouslySetInnerHTML` on content that a user can influence
 
+### Probes from public incidents
+
+Run these too; each is a real exploit class that shipped in a public app. Report the ones that apply to the stack and why the rest do not.
+
+- **Object access:** change an id in the URL or body (IDOR); sign up with `"role": "admin"` in the payload; send your own price, quantity (try `-1`), or discount to checkout.
+- **Money and state:** unverified payment webhooks (check the signature); coupon or credit redeemed in parallel (make it atomic); replayed 2FA or OTP codes; guessable login codes with no attempt cap.
+- **Tokens and identity:** `Math.random()` for tokens or reset links; JWT `alg` confusion; trusting a mutable email claim over the provider's subject id (nOAuth); non-constant-time secret comparison; usernames compared before Unicode normalisation; long inputs truncated before hashing (bcrypt drops past 72 bytes).
+- **Supabase specifics:** views that bypass RLS (use `security_invoker`); a rate limit keyed on a spoofable `X-Forwarded-For`.
+- **Input to execution:** stored XSS through names and bios; SVG uploads carrying script (check content, not extension); prompt injection into AI features; template injection; prototype pollution in merge helpers; catastrophic-backtracking regex; XXE in XML parsers.
+- **Cost:** AI or email endpoints with no rate limit or spend cap; `.env` committed anywhere in history; keys shipped in the client bundle (check DevTools Sources).
+- **Infra, usually the host's job:** cache poisoning via `X-Forwarded-Host`, request smuggling, WebSocket origin checks, HTTP/2 rapid reset. Confirm the platform covers them rather than assuming.
+
 ## Method
 
 Read the code, do not skim it. Trace user input from entry to storage to render. Check the git history for secrets. Run `npm audit`. Read every RLS policy line by line rather than trusting that RLS is on.

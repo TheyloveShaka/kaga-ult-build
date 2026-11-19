@@ -31,7 +31,7 @@ The shot list is the deliverable of this skill. Write it into `docs/SCROLL-NARRA
 Beat 1  0 to 15vh
   Visual:    single strawberry, frozen mid-fall, hard top light, deep shadow
   Media:     generated still, 16:9, seed locked
-  Copy:      eyebrow + one line, "Picked at dawn"
+  Copy:      one line, "Picked at dawn"
   Motion:    pinned, scrub-driven rotation, no autoplay
   Exit:      hands off to beat 2 at matching vertical position
 

@@ -56,3 +56,10 @@ From a design bookmark list on X. Each site resolved and matches its description
 | **wedoflow.com** | 1,300+ distinctive pages |
 | **wonderlist.design** | Premium Figma designs |
 | **modulify.ai/templates** | 100+ website templates from an AI site builder |
+
+### Found 2026-11-19 (unverified, check before paying or installing)
+
+| Source | What it is | Note |
+|---|---|---|
+| **details.so** | Handpicked site inspiration plus an MCP server that lets Claude search it for sections and transitions | Pro $9/month, Vault with AI access $19/month per its page. A Phase 0 reference source, never the build |
+| **SEO tools named in a reel** | Claude SEO (site audit), a Google Search Console MCP, Open SEO (open-source keyword, rank, and backlink research), GEO Optimizer (AI-search readability fixes) | Names only. Read each repo and the permissions it asks for before installing; third-party plugins run with your access |

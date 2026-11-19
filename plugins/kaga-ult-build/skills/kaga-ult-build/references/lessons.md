@@ -28,6 +28,8 @@ Mined from Kaga's build history across UWA, MyLand.ai, Kamwe Forex, Frozen Baske
 
 11. **The deployed site was slow or dead past the hero** (Kaga Hotel, 2026-09-23: "the page still takes yearssss", "the rest of the page doesn't load except for the hero"). Rule: a loader never gates content, and "done" is checked on the deployed URL with a throttled mobile profile, not on localhost.
 
+13. **The eyebrow-and-two-buttons hero survived v2.5** ("a very generic pattern of eyebrow and having two buttons below the words on the hero", 2026-11-19). Same cause as 12: the skill modelled it. The scroll-narrative example read "eyebrow + one line", the UX spec template asked for supporting copy and a CTA, and no scan counted hero buttons. Kaga Kampala's live hero has the pair. Rule: the hero is composed from the subject, Kaga picks the composition from three, the unslop pass runs first, and Block F counts `heroActions` and `eyebrow`. Colour follows the three-colour rule Kaga adopted the same day.
+
 ## Standing preferences
 
 - **Opus leads, cheaper agents do the heavy lifting.** Said on at least seven builds. It is now the default; never make him repeat it.

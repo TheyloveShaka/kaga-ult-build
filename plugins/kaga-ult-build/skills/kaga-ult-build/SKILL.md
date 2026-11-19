@@ -46,7 +46,7 @@ Worker agents pin the full model id, not the `sonnet` alias, because the alias c
 These override convenience. If you are about to break one, say so out loud instead.
 
 1. **Delegation is binding.** A phase the plan assigns to an agent gets that agent, spawned with the `Agent` tool. Doing it inline erases the independent review that made the plan worth writing. If you skip a delegation, say so immediately.
-2. **Zero defaults.** No system font stack, no stock Tailwind palette, no unstyled shadcn, no uniform radius, and none of the AI-default look: the banned faces in `kaga-art-direction`, pill-shaped everything, the italic-serif-accent hero, indigo and teal gradients. If it looks like the framework's demo, it is not done.
+2. **Zero defaults.** No system font stack, no stock Tailwind palette, no unstyled shadcn, no uniform radius, and none of the AI-default look: the banned faces in `kaga-art-direction`, pill-shaped everything, the italic-serif-accent hero, the eyebrow-plus-two-buttons hero, more than three colours, indigo and teal gradients. If it looks like the framework's demo, it is not done.
 3. **Plan, Act, Audit, with a human gate.** The builder never signs off its own work. **An autonomous run stops at the end of Phase 1 and waits for Kaga.** A plan approved by the thing that wrote it is not a checkpoint.
 4. **No em dashes, and no narrating code comments.** Anywhere, including rendered copy. Rationale lives in docs, not in code.
 5. **Images are the product.** No greybox ships. Every slot is sourced, generated, or a written ask to the client.
@@ -68,7 +68,7 @@ Run `kaga-reference-hunt`: ten references, the specific move worth taking from e
 
 - **1a Extraction (Track A).** Pull logo, favicon, colours, fonts, and copy from the live site and the client's own files (`pdf`, `xlsx`). Name the brand's signature element and confirm it with Kaga. Output `docs/BRAND-EXTRACT.md`.
 - **1b Concepts and the adversarial gate.** Three genuinely different directions, each with its narrative structure (`kaga-scroll-narrative`). Kaga picks. Then a *different* agent attacks the pick: where it fails on mobile, which beat is decorative, what reads as generic, the weakest beat and its replacement. It finds holes, it does not redesign. Record the outcome in `docs/DECISIONS.md`.
-- **1c Art direction.** `kaga-art-direction` plus `kaga-conversion`: palette built from a named source with contrast ratios, named and licensed fonts, motion language, spacing scale. Kaga picks the palette and the type pairing from three rendered specimens each. Dashboards and app screens use the house language in `kaga-product-ui`.
+- **1c Art direction.** `kaga-art-direction` plus `kaga-conversion`: palette built from a named source under the three-colour rule, with contrast ratios, named and licensed fonts, motion language, spacing scale. Kaga picks the palette, the type pairing, and the hero composition from three rendered specimens each. Dashboards and app screens use the house language in `kaga-product-ui`.
 - **1d Plan.** `docs/PLAN.md`: routes, section intents, the image plan (`kaga-imagery`), data model, acceptance criteria, and the crew table.
 - **1e Project `CLAUDE.md`** via `init`. Update, never overwrite; keep hard-won rules.
 
@@ -77,7 +77,7 @@ Run `kaga-reference-hunt`: ten references, the specific move worth taking from e
 ## Phase 2: Act
 
 - **Print the crew table** with the model actually running each phase. Preflight any non-default model with a one-token call.
-- **Hero first.** Build the hero, apply Law 7 to it, get Kaga's approval, then build the rest. The hero takes the most revision rounds on every build.
+- **Hero first.** Build the hero from the composition Kaga picked, run the unslop pass in `kaga-art-direction` on it, apply Law 7, get Kaga's approval, then build the rest. The hero takes the most revision rounds on every build.
 - **Prompt shape.** Every agent prompt is a byte-stable prefix (laws, stack, tokens, then one cache breakpoint) followed by its own slice of the plan, its boundary, an output shape ("a diff and a three-line summary"), an iteration cap, and the `<BLOCKED: reason>` early exit. The full `ART-DIRECTION.md` goes only to P1, P9, and the auditors. Details in `references/cost-and-models.md`.
 - **Parallel only with headroom.** P3, P5, and P6 can overlap, but parallelism spends the same tokens faster. When the window or budget is short, run in sequence.
 - **Mobile is part of P3,** designed per element, not a later request.
@@ -129,6 +129,7 @@ Before closing, append one to three lessons from this build to `~/.claude/kaga/l
 - [ ] Metadata, OG, and JSON-LD on every route
 - [ ] No em dashes, no narrating comments, no sound unless asked
 - [ ] Security clean or accepted with a reason (Tracks A to C)
+- [ ] Accounts, money, or saved forms: unit tests on pricing and permission logic, the UAT flows saved as Playwright specs, and a GitHub Actions run on every push that blocks the deploy when red
 
 ## References
 

@@ -87,17 +87,24 @@ A recognisable set of defects appears in generated builds regardless of the mode
 - **Duplicate near-identical components.** Three card variants doing one job. `kaga-integrator` owns this, but check it here too.
 - **Default rounding everywhere.** One radius applied uniformly to every element regardless of role.
 - **Generic filler copy.** Sections that exist because a template has them, saying nothing specific about this business.
-- **The AI-default look.** A face from the banned lists in `kaga-art-direction`, an italic serif accent word in a sans headline, uppercase mono eyebrows, a tag pill above the hero headline, pill-shaped everything, gradient headline text, indigo-to-violet or blue-to-teal gradients. Kaga calls this "Claude defaults". Run this scan on every page before Kaga sees it, not only at launch:
+- **The AI-default look.** A face from the banned lists in `kaga-art-direction`, an italic serif accent word in a sans headline, an eyebrow or tag pill above the hero headline, a primary plus outline button pair under it, pill-shaped everything, gradient headline text, indigo-to-violet or blue-to-teal gradients, more than three colours. Kaga calls this "Claude defaults". Run this scan on every page before Kaga sees it, not only at launch:
 ```js
 const banned = ['Inter', 'Geist', 'Geist Mono', 'Instrument Serif', 'Space Grotesk', 'DM Sans', 'Manrope', 'Plus Jakarta Sans', 'JetBrains Mono', 'Satoshi', 'Clash Display', 'General Sans', 'Cabinet Grotesk', 'Switzer', 'Fraunces', 'Bricolage Grotesque', 'Sora', 'Outfit', 'Roboto', 'Open Sans', 'Lato', 'Montserrat', 'Poppins', 'Nunito', 'Raleway'];
 const els = [...document.querySelectorAll('body *')].filter(e => e.getClientRects().length);
-const fonts = [...new Set(els.map(e => getComputedStyle(e).fontFamily.split(',')[0].replace(/["']/g, '').trim()))].filter(f => banned.includes(f));
-const pills = els.filter(e => { const s = getComputedStyle(e), h = e.offsetHeight; return h > 0 && h < 64 && parseFloat(s.borderTopLeftRadius) >= h / 2 && (s.backgroundColor !== 'rgba(0, 0, 0, 0)' || s.borderTopWidth !== '0px'); }).length;
-const accentItalics = [...document.querySelectorAll('h1 *, h2 *')].filter(e => getComputedStyle(e).fontStyle === 'italic').length;
-const gradientText = els.filter(e => { const s = getComputedStyle(e); return (s.backgroundClip || s.webkitBackgroundClip) === 'text'; }).length;
-({ fonts, pills, accentItalics, gradientText })
+const css = e => getComputedStyle(e), filled = s => s.backgroundColor !== 'rgba(0, 0, 0, 0)' || s.borderTopWidth !== '0px';
+const fonts = [...new Set(els.map(e => css(e).fontFamily.split(',')[0].replace(/["']/g, '').trim()))].filter(f => banned.includes(f));
+const pills = els.filter(e => { const s = css(e), h = e.offsetHeight; return h > 0 && h < 64 && parseFloat(s.borderTopLeftRadius) >= h / 2 && filled(s); }).length;
+const accentItalics = [...document.querySelectorAll('h1 *, h2 *')].filter(e => css(e).fontStyle === 'italic').length;
+const gradientText = els.filter(e => { const s = css(e); return (s.backgroundClip || s.webkitBackgroundClip) === 'text'; }).length;
+const h1 = document.querySelector('h1'), hb = h1 && h1.getBoundingClientRect(), h1Size = h1 ? parseFloat(css(h1).fontSize) : 0;
+const heroActions = h1 ? els.filter(e => { const r = e.getBoundingClientRect(); return e.matches('a, button') && !e.closest('nav') && e.innerText.trim() && r.top > hb.top - 300 && r.top < hb.bottom + 400 && e.offsetHeight >= 28 && e.offsetHeight <= 96 && filled(css(e)); }).length : 0;
+const eyebrow = !!h1 && [h1.previousElementSibling, h1.parentElement.previousElementSibling].filter(Boolean).some(e => { const s = css(e), t = e.innerText.trim(); return t && t.length < 60 && parseFloat(s.fontSize) < h1Size * 0.4 && (s.textTransform === 'uppercase' || t === t.toUpperCase() || parseFloat(s.letterSpacing) > 1 || parseFloat(s.borderTopLeftRadius) >= e.offsetHeight / 2); });
+const cv = document.createElement('canvas').getContext('2d', { willReadFrequently: true });
+const hueOf = c => { cv.clearRect(0, 0, 1, 1); cv.fillStyle = '#000'; cv.fillStyle = c; cv.fillRect(0, 0, 1, 1); let [r, g, b, a] = cv.getImageData(0, 0, 1, 1).data; if (a < 128) return null; r /= 255; g /= 255; b /= 255; const mx = Math.max(r, g, b), mn = Math.min(r, g, b), l = (mx + mn) / 2, d = mx - mn; if (!d || l < 0.15 || l > 0.9 || d / (1 - Math.abs(2 * l - 1)) < 0.3) return null; const h = mx === r ? ((g - b) / d + 6) % 6 : mx === g ? (b - r) / d + 2 : (r - g) / d + 4; return Math.round(h * 2) % 12 * 30; };
+const hues = [...new Set(els.flatMap(e => { const s = css(e); return [s.color, s.backgroundColor, s.borderTopColor].map(hueOf); }).filter(h => h !== null))].sort((a, b) => a - b);
+({ fonts, pills, accentItalics, gradientText, heroActions, eyebrow, hues })
 ```
-Expect `fonts` empty unless Kaga picked one from a specimen, `pills` within what `ART-DIRECTION.md` allows, and `accentItalics` and `gradientText` at 0 unless they were chosen on purpose.
+Expect `fonts` empty unless Kaga picked one from a specimen, `pills` within what `ART-DIRECTION.md` allows, `accentItalics`, `gradientText`, and `eyebrow` at 0 or false, `heroActions` at 1 or 0, and `hues` (saturated hue families in 30-degree buckets) at no more than two, about 120 degrees apart. Neighbouring buckets are one family. Anything else ships only if it was chosen on purpose and the reason is in `ART-DIRECTION.md`.
 - **Icon soup.** Mixed icon sets, inconsistent weights and sizes in one row.
 - **Text baked into an image** where it should be DOM. Unselectable, invisible to search, unreadable to a screen reader. See `kaga-scroll-narrative`.
 - **The mobile stack default.** Anything laid out in a row on desktop stacking vertically on mobile whether or not that is right. A three-item stat row usually wants to stay one row at a smaller size, not become three.
@@ -172,6 +179,7 @@ The twenty above are the floor, not the bar. A build going out at premium price 
 - **A real `<html lang>`**, correct for the market.
 - **Focus visible on every interactive element**, and a skip link.
 - **`prefers-reduced-motion` honoured**, verified by emulating it.
+- **Domain and mail set up.** App on a subdomain (`app.`) so marketing-site changes never touch it; mail sent from subdomains (`mail.` for transactional, `news.` for marketing) so a flagged newsletter cannot sink receipts and password resets; SPF, DKIM, and DMARC passing on each; `sitemap.xml` submitted in Google Search Console on launch day.
 - **Forms actually deliver.** Submit a real test entry and confirm it arrives where the client will look for it. A contact form that posts to nowhere is the single worst launch bug on this list, and it is silent.
 
 ## The feature menu: use judgment, not a checklist

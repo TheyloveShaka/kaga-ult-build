@@ -30,6 +30,17 @@ Build the ramps in OKLCH, not hex. Lightness should be the only thing that steps
 - **Light comes from above.** In dark mode a gradient between two surface shades plus a slightly lighter top border reads as a lit edge. In light mode the border matches the surface and depth comes from a two-layer shadow: a short darker one plus a long soft one.
 - Emit tokens as `oklch()` values; every current browser supports them, including Chrome on mid-range Android.
 
+### The three-colour rule (house default)
+
+Kaga's rule for every project from 2026-11-19. The page runs on three colours; images carry everything else.
+
+1. **Two bases for background and type.** A light neutral and a dark, or a light and one saturated colour (cream on forest green, white on brand red). They take about 90% of the page between them.
+2. **The accent is the base hue turned 120 degrees.** Take the saturated base, or the subject's dominant hue when both bases are neutral, and rotate the hue 120 degrees either way round the wheel (OKLCH `h`, then tune lightness and chroma for contrast). Pick the side that suits the subject. Write both hue numbers into `ART-DIRECTION.md`.
+3. **The accent goes in three places only:** on or around the subject, one word or phrase in the headline (colour, never italics), and the primary button. Not on icons, borders, dividers, or section backgrounds.
+4. **Physical, not digital, backgrounds.** Paper, concrete, fabric, frosted glass, or a photographed surface, or flat colour. Never a digital gradient or a mesh.
+
+Semantic colours (error, success) sit outside the rule and are tuned to it. Product UI follows its saved language in `kaga-product-ui`, where status colours are semantic; the brand layer still uses three. Break the rule only when Kaga picks a specimen that breaks it.
+
 ### The structure
 
 Do not ship a single brand colour and five greys. Build:
@@ -37,8 +48,8 @@ Do not ship a single brand colour and five greys. Build:
 | Role | Count | Notes |
 |---|---|---|
 | Primary | 1 + 9 step ramp | The brand's spine |
-| Secondary | 1 + ramp | Supports, never competes |
-| Accent | 1 | Used sparingly, earns attention |
+| Secondary | Optional | Most builds ship without one under the three-colour rule; add one only with a reason |
+| Accent | 1 | The base hue turned 120 degrees; subject, one word, the primary button |
 | Neutral | 10 step ramp | Warm or cool, chosen deliberately, never pure `#000`/`#fff` unless argued for |
 | Semantic | success, warning, danger, info | Tuned to the palette, not stock red/green |
 | Surface | 3 to 4 elevations | Background, raised, overlay, sunken |
@@ -90,7 +101,7 @@ Two lists. The first are the faces reached for when no decision is made. The sec
 - **Generic defaults:** `Inter`, `Roboto`, `Open Sans`, `Lato`, `Montserrat`, `Poppins`, `Nunito`, `Raleway`, `Source Sans`, `system-ui` as a primary, and any bare `font-sans` / `font-serif` / `font-mono` Tailwind default.
 - **The AI-default look:** `Geist`, `Geist Mono`, `Instrument Serif`, `Space Grotesk`, `DM Sans`, `Manrope`, `Plus Jakarta Sans`, `JetBrains Mono`, `Satoshi`, `Clash Display`, `General Sans`, `Cabinet Grotesk`, `Switzer`, `Fraunces`, `Bricolage Grotesque`, `Sora`, `Outfit`.
 
-Banned as patterns too, whatever the face: an italic serif accent word inside a sans headline, uppercase mono eyebrow labels with wide tracking, and a small tag pill above the hero headline. Together they are the most recognisable AI hero.
+Banned as patterns too, whatever the face: an italic serif accent word inside a sans headline, uppercase mono eyebrow labels with wide tracking, a small tag pill above the hero headline, and a primary plus outline button pair under it. Together they are the most recognisable AI hero; see "The hero is composed, not templated".
 
 A face from either list ships only if Kaga picks it from a rendered specimen (see "Kaga picks from specimens"). A written justification is not enough.
 
@@ -146,9 +157,24 @@ Then in every downstream prompt and spec: state the family name and where it loa
 
 Self-host or `next/font`. Preload the display face. `font-display: swap` with a metric-matched fallback so the layout does not jump. State the strategy, do not leave it to the framework.
 
+## The hero is composed, not templated
+
+The AI hero skeleton: eyebrow label, two-line headline, grey paragraph, a filled button beside an outline button, and an image in a rounded card to the right. Every part is defensible alone; together they read as generated on sight. It is banned as a whole, and so are its parts unless the spec argues for one:
+
+- **At most one action.** The second action lives in the nav or the next section. A hero with no button is fine when the scroll is the invitation.
+- **No eyebrow.** A line above the headline ships only if it carries a fact the headline cannot (a date, a price, a live status), set in the body face.
+- **No support paragraph by default.** If the headline needs a paragraph to make sense, rewrite the headline. A short line carrying one fact is allowed.
+- **The subject is the composition.** The product, person, or place fills the frame or breaks out of it: full bleed, scaled past the edges, overlapping the type. Never a card beside the text. Copy sits in the image's negative space.
+- **Specific copy.** Name the thing ("Expeditions to the quiet ends of the Earth"), never "Discover", "Elevate", "Unlock", or "Experience the".
+- **One bespoke detail.** A nav dropdown with image previews, a button arrow that travels on hover, a designed reveal of the hero image. Build one well, not five.
+
+**The unslop pass.** Run it on every hero before Kaga sees it, in this order: declutter (cut the eyebrow, the second button, the badge), spacing, copy, alignment, font, font size, imagery (go full bleed), then the one bespoke detail and the reveal. Order matters: decluttering first stops polish being spent on parts that get cut.
+
+The same thinking applies below the hero. Three equal icon cards under a centred heading, a strip of round-number stats, a grey "Trusted by" logo row, and a gradient CTA band before the footer each need a reason from the brief or a picked reference.
+
 ## Kaga picks from specimens
 
-Hex swatches and font names in a document are not a decision; they are how defaults slip through. For the palette and for the type pairing, render three genuinely different options on the real hero section: the actual background, headline, body, a card, and the primary button, at 1440px and 375px. Kaga picks one or mixes. Record the pick and the two rejected options in `ART-DIRECTION.md`. Nothing downstream starts until this is done.
+Hex swatches and font names in a document are not a decision; they are how defaults slip through. For the palette, the type pairing, and the hero composition, render three genuinely different options on the real hero section: the actual background, headline, body, a card, and the primary button, at 1440px and 375px. Hero options differ in structure, not just colour: three colourways of one skeleton is one option. Kaga picks one or mixes. Record the pick and the two rejected options in `ART-DIRECTION.md`. Nothing downstream starts until this is done.
 
 ## Motion language
 
@@ -201,3 +227,5 @@ The small, specific settings that separate a professional finish from a default 
 - [ ] No face from either banned list unless Kaga picked it from a specimen
 - [ ] The palette names its source and was picked from three rendered options
 - [ ] Pill shapes appear only where the radius scale assigns them
+- [ ] Three colours: two bases plus an accent 120 degrees from the base hue, both hue numbers written down, accent used only on the subject, one word, and the primary button
+- [ ] Hero has no eyebrow, at most one action, and the subject is the composition, not a card

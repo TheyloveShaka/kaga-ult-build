@@ -48,6 +48,16 @@ Pass every specialist the motion language verbatim. They start cold and will oth
 
 **Mobile is a different budget.** Reduce particle counts, drop expensive shaders, simplify or skip scroll pinning where the small-screen experience suffers. Specify the mobile variant, do not just let it run heavy.
 
+## Principles that read as craft
+
+- **Frequency sets the budget.** The more often something is used, the less it animates. Menus, tabs, toggles, and command palettes are instant or under 100ms; save choreography for moments seen once.
+- **Answer fast.** Acknowledge input within 100ms and finish within 400ms.
+- **Ease, never linear,** for anything that travels. Travelling objects move in arcs, not straight lines.
+- **Anticipation and follow-through** on hero moments only: a small wind-up before the big move, parts that settle after the body stops.
+- **Feedback with character.** A shake on a wrong password, a small secondary flourish on save. One per action.
+- **Stage one focus at a time.** Two things moving at once compete.
+- **Hit area beyond the visual.** A 24px icon gets a 44px target.
+
 ## Verify, do not assert
 
 Open the site in the Browser pane. Scroll it. Watch the animation actually run. Emulate reduced motion and confirm the fallback. Take screenshots as proof. A motion layer described but not observed is not delivered.

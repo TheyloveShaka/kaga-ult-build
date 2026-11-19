@@ -25,12 +25,14 @@ You start cold. Work from the brief, the reference verdict, and `docs/ART-DIRECT
 ```
 Section: hero
 Goal:     what this section must accomplish for the visitor
-Content:  headline intent, supporting copy intent, CTA and its destination
+Content:  headline intent, the one action (or none) and its destination
 Layout:   structure at desktop, how it reflows at tablet and mobile
 Image:    slot id, references docs/IMAGE-PLAN.md
 Motion:   what animates on entry, per the motion language
 States:   loading / empty / error, where applicable
 ```
+
+A hero spec never lists an eyebrow, a support paragraph, or a second button by default; each needs a written reason. See "The hero is composed, not templated" in `kaga-art-direction`.
 
 **User flows.** The two or three paths that actually matter for this business, traced end to end. A venue site's flow is browse, shortlist, enquire. Name yours and make sure the IA serves them.
 

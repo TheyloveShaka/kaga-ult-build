@@ -61,6 +61,8 @@ From lawsofux.com. Only the ones that should change what gets built:
 | Tesler's law | Complexity moves into the system, not onto the user |
 | Aesthetic-usability effect | Beauty buys tolerance but hides usability problems, so test with tasks, not opinions |
 
+Put this table in every frontend brief. Given a 20-law list as part of the prompt, a public test (one run each, so a hint rather than proof) got a page 30% shorter, cut undersized tap targets from 7 to 2, and stopped Claude inventing a "12,000+ happy customers" line.
+
 ## CTAs
 
 The whole point of most sections is that somebody clicks. Design accordingly.
@@ -69,6 +71,7 @@ The whole point of most sections is that somebody clicks. Design accordingly.
 - **No ghost buttons for primary actions.** Outline-only buttons with no fill read as decoration, get overlooked, and get clicked less. They look sophisticated in a mockup and underperform in production. Use them for genuinely secondary actions only, and never as the single action on a hero.
 - **Say what happens next.** "Check availability" beats "Learn more". "Get a quote" beats "Submit". The label is a promise about the next screen.
 - **One primary action per section.** Two competing CTAs halve each other.
+- **One action in the hero.** A filled button beside an outline button under the headline is the AI-default hero. Put the second action in the nav or the next section. See `kaga-art-direction`, "The hero is composed, not templated".
 - **Repeat the primary CTA** down a long page. A visitor convinced at 70% scroll should not have to hunt.
 - **Real states.** Hover, focus-visible, active, loading, disabled, and a success state after the click.
 

@@ -37,7 +37,8 @@ Per route:
 
 Site wide:
 - JSON-LD structured data matched to the business type: `LocalBusiness`, `Organization`, `Product`, `Event`, `FAQPage`, `BreadcrumbList`. Validate the output, do not just emit it.
-- `sitemap.xml` and `robots.txt`
+- `sitemap.xml` and `robots.txt`, with the sitemap submitted in Google Search Console at launch
+- AI search: an answer-first opening paragraph on key pages, `FAQPage` schema only for real FAQs, an `llms.txt` at the root, and an About page that states the business as a clear entity (what, where, for whom)
 - Semantic HTML with one `h1` per page and no skipped heading levels
 - Internal linking that actually connects related pages, not a nav-only graph
 - Descriptive `alt` on every meaningful image, which serves accessibility and search equally
@@ -50,6 +51,7 @@ On Next.js use the Metadata API rather than hand-rolled tags, and generate OG im
 - No keyword stuffing. It reads badly and no longer works.
 - No lorem ipsum shipped anywhere.
 - No claim the client cannot substantiate. You are writing something they will be held to.
+- No invented social proof. Customer counts, ratings, years in business, awards, and testimonials appear only when the client supplied them. Models invent "12,000+ happy customers" by default.
 
 ## Report back
 
